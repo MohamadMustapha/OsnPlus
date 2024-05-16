@@ -7,6 +7,12 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		D13EF5902BF6899900075256 /* Pixel in Frameworks */ = {isa = PBXBuildFile; productRef = D13EF58F2BF6899900075256 /* Pixel */; };
+		D17781EA2BF55A3D0040B8D9 /* OSNCore in Frameworks */ = {isa = PBXBuildFile; productRef = D17781E92BF55A3D0040B8D9 /* OSNCore */; };
+		D17781EC2BF55A3D0040B8D9 /* Home in Frameworks */ = {isa = PBXBuildFile; productRef = D17781EB2BF55A3D0040B8D9 /* Home */; };
+		D17781EE2BF55A3D0040B8D9 /* Profile in Frameworks */ = {isa = PBXBuildFile; productRef = D17781ED2BF55A3D0040B8D9 /* Profile */; };
+		D17781F02BF55A3D0040B8D9 /* Search in Frameworks */ = {isa = PBXBuildFile; productRef = D17781EF2BF55A3D0040B8D9 /* Search */; };
+		D17781F22BF55A3D0040B8D9 /* OSNNetwork in Frameworks */ = {isa = PBXBuildFile; productRef = D17781F12BF55A3D0040B8D9 /* OSNNetwork */; };
 		D1EA0C122BF1536E005A5B07 /* OsnPlusApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = D1EA0C112BF1536E005A5B07 /* OsnPlusApp.swift */; };
 		D1EA0C142BF1536E005A5B07 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D1EA0C132BF1536E005A5B07 /* ContentView.swift */; };
 		D1EA0C162BF15370005A5B07 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = D1EA0C152BF15370005A5B07 /* Assets.xcassets */; };
@@ -14,6 +20,9 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		D17781E82BF554CF0040B8D9 /* Network */ = {isa = PBXFileReference; lastKnownFileType = wrapper; name = Network; path = OsnPlus/Network; sourceTree = "<group>"; };
+		D1B153F22BF2AE360047D42B /* Features */ = {isa = PBXFileReference; lastKnownFileType = wrapper; name = Features; path = OsnPlus/Features; sourceTree = "<group>"; };
+		D1B153F32BF2AE4C0047D42B /* Core */ = {isa = PBXFileReference; lastKnownFileType = wrapper; name = Core; path = OsnPlus/Core; sourceTree = "<group>"; };
 		D1EA0C0E2BF1536E005A5B07 /* OsnPlus.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = OsnPlus.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		D1EA0C112BF1536E005A5B07 /* OsnPlusApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OsnPlusApp.swift; sourceTree = "<group>"; };
 		D1EA0C132BF1536E005A5B07 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
@@ -26,17 +35,34 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				D17781F02BF55A3D0040B8D9 /* Search in Frameworks */,
+				D17781EE2BF55A3D0040B8D9 /* Profile in Frameworks */,
+				D17781EA2BF55A3D0040B8D9 /* OSNCore in Frameworks */,
+				D13EF5902BF6899900075256 /* Pixel in Frameworks */,
+				D17781F22BF55A3D0040B8D9 /* OSNNetwork in Frameworks */,
+				D17781EC2BF55A3D0040B8D9 /* Home in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		D17781DA2BF552AA0040B8D9 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
 		D1EA0C052BF1536E005A5B07 = {
 			isa = PBXGroup;
 			children = (
+				D17781E82BF554CF0040B8D9 /* Network */,
+				D1B153F32BF2AE4C0047D42B /* Core */,
+				D1B153F22BF2AE360047D42B /* Features */,
 				D1EA0C102BF1536E005A5B07 /* OsnPlus */,
 				D1EA0C0F2BF1536E005A5B07 /* Products */,
+				D17781DA2BF552AA0040B8D9 /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -83,6 +109,14 @@
 			dependencies = (
 			);
 			name = OsnPlus;
+			packageProductDependencies = (
+				D17781E92BF55A3D0040B8D9 /* OSNCore */,
+				D17781EB2BF55A3D0040B8D9 /* Home */,
+				D17781ED2BF55A3D0040B8D9 /* Profile */,
+				D17781EF2BF55A3D0040B8D9 /* Search */,
+				D17781F12BF55A3D0040B8D9 /* OSNNetwork */,
+				D13EF58F2BF6899900075256 /* Pixel */,
+			);
 			productName = OsnPlus;
 			productReference = D1EA0C0E2BF1536E005A5B07 /* OsnPlus.app */;
 			productType = "com.apple.product-type.application";
@@ -111,6 +145,9 @@
 				Base,
 			);
 			mainGroup = D1EA0C052BF1536E005A5B07;
+			packageReferences = (
+				D13EF58E2BF6899900075256 /* XCRemoteSwiftPackageReference "Pixel-AppleOS" */,
+			);
 			productRefGroup = D1EA0C0F2BF1536E005A5B07 /* Products */;
 			projectDirPath = "";
 			projectRoot = "";
@@ -344,6 +381,45 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCRemoteSwiftPackageReference section */
+		D13EF58E2BF6899900075256 /* XCRemoteSwiftPackageReference "Pixel-AppleOS" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/SweepLebanon/Pixel-AppleOS.git";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 1.0.9;
+			};
+		};
+/* End XCRemoteSwiftPackageReference section */
+
+/* Begin XCSwiftPackageProductDependency section */
+		D13EF58F2BF6899900075256 /* Pixel */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = D13EF58E2BF6899900075256 /* XCRemoteSwiftPackageReference "Pixel-AppleOS" */;
+			productName = Pixel;
+		};
+		D17781E92BF55A3D0040B8D9 /* OSNCore */ = {
+			isa = XCSwiftPackageProductDependency;
+			productName = OSNCore;
+		};
+		D17781EB2BF55A3D0040B8D9 /* Home */ = {
+			isa = XCSwiftPackageProductDependency;
+			productName = Home;
+		};
+		D17781ED2BF55A3D0040B8D9 /* Profile */ = {
+			isa = XCSwiftPackageProductDependency;
+			productName = Profile;
+		};
+		D17781EF2BF55A3D0040B8D9 /* Search */ = {
+			isa = XCSwiftPackageProductDependency;
+			productName = Search;
+		};
+		D17781F12BF55A3D0040B8D9 /* OSNNetwork */ = {
+			isa = XCSwiftPackageProductDependency;
+			productName = OSNNetwork;
+		};
+/* End XCSwiftPackageProductDependency section */
 	};
 	rootObject = D1EA0C062BF1536E005A5B07 /* Project object */;
 }
