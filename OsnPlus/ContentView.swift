@@ -27,7 +27,7 @@ struct ContentView: View {
                 }
             }
             BottomTabBarView(selectedTab: $selectedTab)
-                .background(PixelColor.dark6)
+                .background(PixelColor.dark7)
         }
         .ignoresSafeArea()
     }

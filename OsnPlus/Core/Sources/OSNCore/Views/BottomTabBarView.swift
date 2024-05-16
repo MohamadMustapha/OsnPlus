@@ -68,12 +68,12 @@ public struct BottomTabBarView: View {
             }
         }
         .padding(.vertical, .p5)
-        .padding(.bottom, .p10)
+        .padding(.bottom, .p11)
     }
 
     private func image(_ isActive: Bool) -> PixelColorStyle {
         return .conditional(activeColorStyle: .single(color: PixelColor.light1),
-                            inactiveColorStyle: .single(color: PixelColor.light8),
+                            inactiveColorStyle: .single(color: .gray),
                             isActive: isActive)
     }
 
@@ -88,9 +88,9 @@ fileprivate extension PixelTextConfiguration {
         return .init(alignment: .center,
                      colorStyle: .conditional(
                         activeColorStyle: .single(color: PixelColor.light1),
-                        inactiveColorStyle: .single(color: PixelColor.light8),
+                        inactiveColorStyle: .single(color: .gray),
                         isActive: isActive),
-                     fontStyle: .single(font: .small1),
+                     fontStyle: .single(font: .superSmall1),
                      lineLimit: 1)
     }
 }
