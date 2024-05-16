@@ -1,18 +1,21 @@
 //
-//  SwiftUIView.swift
-//  
+//  SearchView.swift
+//
 //
 //  Created by Mohamad Mustapha on 16/05/2024.
 //
 
 import SwiftUI
 
-struct SwiftUIView: View {
-    var body: some View {
+public struct SearchView: View {
+
+    public init() { }
+
+    public var body: some View {
         Text(/*@START_MENU_TOKEN@*/"Hello, World!"/*@END_MENU_TOKEN@*/)
     }
 }
 
 #Preview {
-    SwiftUIView()
+    SearchView()
 }
