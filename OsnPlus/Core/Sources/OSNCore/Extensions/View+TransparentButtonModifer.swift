@@ -9,7 +9,8 @@ import Pixel
 import SwiftUI
 
 public extension View {
-    func transparentButtonStyle(colorStyle: PixelColorStyle, type: TransparentButtonStyle.Shape ) -> some View {
+
+    func transparentButtonStyle(colorStyle: PixelColorStyle, type: TransparentButtonStyle.Shape) -> some View {
         self.modifier(TransparentButtonStyle(type, colorStyle))
     }
 }

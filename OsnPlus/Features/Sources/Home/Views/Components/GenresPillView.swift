@@ -11,7 +11,9 @@ import SwiftUI
 
 struct GenresPillView: View {
 
-    let title: String
+    @State private var isPresented: Bool = false
+
+    @Binding var title: String
 
     var body: some View {
         HStack(alignment: .center, spacing: .p7) {
@@ -24,7 +26,7 @@ struct GenresPillView: View {
             .buttonStyle(PixelSizeButtonStyle())
 
             Button {
-
+                isPresented.toggle()
             } label: {
                 HStack(alignment: .top, spacing: .p3) {
                     PixelText(configuration: .pill, text: "More")
@@ -39,6 +41,9 @@ struct GenresPillView: View {
                 .transparentButtonStyle(colorStyle: pillColorStyle, type: .capsule)
             }
             .buttonStyle(PixelSizeButtonStyle())
+            .fullScreenCover(isPresented: $isPresented, content: {
+
+            })
 
             Spacer()
         }
@@ -60,5 +65,9 @@ fileprivate extension PixelTextConfiguration {
 }
 
 #Preview {
-    GenresPillView(title: "Series")
+    ZStack {
+        Color.gray
+        GenresPillView(title: .constant("Series"))
+    }
+    .ignoresSafeArea()
 }
