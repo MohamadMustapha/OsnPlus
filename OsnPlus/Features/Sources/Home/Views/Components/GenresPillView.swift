@@ -42,7 +42,7 @@ struct GenresPillView: View {
             }
             .buttonStyle(PixelSizeButtonStyle())
             .fullScreenCover(isPresented: $isPresented, content: {
-
+                Button("Dismiss"){isPresented.toggle()}
             })
 
             Spacer()
