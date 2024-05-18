@@ -1,5 +1,5 @@
 import XCTest
-@testable import Features
+@testable import Search
 
 final class SearchTests: XCTestCase {
     func testExample() throws {
