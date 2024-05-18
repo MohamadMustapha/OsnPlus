@@ -61,10 +61,9 @@ public struct BottomTabBarView: View {
                         }
                         Spacer()
                     }
-                    .sensoryFeedback(.selection, trigger: selectedTab)
                     .contentShape(Rectangle())
                 }
-                .buttonStyle(TabButtonStyle())
+                .buttonStyle(DecreaseSizeButtonStyle())
             }
         }
         .padding(.vertical, .p5)
@@ -92,15 +91,6 @@ fileprivate extension PixelTextConfiguration {
                         isActive: isActive),
                      fontStyle: .single(font: .superSmall1),
                      lineLimit: 1)
-    }
-}
-
-private struct TabButtonStyle: ButtonStyle {
-
-    func makeBody(configuration: Configuration) -> some View {
-        configuration.label
-            .scaleEffect(configuration.isPressed ? 0.8 : 1)
-            .animation(.bouncy(duration: 0.3), value: configuration.isPressed)
     }
 }
 
