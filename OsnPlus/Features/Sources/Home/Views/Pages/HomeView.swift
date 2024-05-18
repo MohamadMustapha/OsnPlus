@@ -10,6 +10,8 @@ import SwiftUI
 
 public struct HomeView: View {
 
+    @State private var isPresented: Bool = false
+
     public init() { }
 
     public var body: some View {
@@ -17,9 +19,11 @@ public struct HomeView: View {
             ZStack {
                 PixelColor.dark8
                     .ignoresSafeArea()
-                GenresPillView(title: .constant("Series"))
+
+                GenresPillView(isPresented: $isPresented, title: .constant("Series"))
             }
         }
+        .blur(radius: isPresented ? 15 : 0)
     }
 }
 

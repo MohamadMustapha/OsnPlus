@@ -11,14 +11,21 @@ import SwiftUI
 
 struct GenresPillView: View {
 
-    @State private var isPresented: Bool = false
+    @Binding var isPresented: Bool
 
     @Binding var title: String
+
+    private static let genres: [String] = ["Series", "Movies",
+                                           "Arabic", "Kids & Family",
+                                           "HBO", "Action",
+                                           "Horror", "Comedy",
+                                           "Romance", "Crime",
+                                           "Sci-fi", "Drama"] 
 
     var body: some View {
         HStack(alignment: .center, spacing: .p7) {
             Button {
-
+                // TODO: implement functionality -> Movies, Series
             } label: {
                 PixelText(configuration: .pill, text: title)
                     .transparentButtonStyle(colorStyle: pillColorStyle, type: .capsule)
@@ -26,7 +33,9 @@ struct GenresPillView: View {
             .buttonStyle(PixelSizeButtonStyle())
 
             Button {
-                isPresented.toggle()
+                withAnimation {
+                    isPresented.toggle()
+                }
             } label: {
                 HStack(alignment: .top, spacing: .p3) {
                     PixelText(configuration: .pill, text: "More")
@@ -41,9 +50,10 @@ struct GenresPillView: View {
                 .transparentButtonStyle(colorStyle: pillColorStyle, type: .capsule)
             }
             .buttonStyle(PixelSizeButtonStyle())
-            .fullScreenCover(isPresented: $isPresented, content: {
-                Button("Dismiss"){isPresented.toggle()}
-            })
+            .fullScreenCover(isPresented: $isPresented) {
+                SheetView(isPresented: $isPresented, items: Self.genres)
+                    .presentationBackground(PixelColor.dark6.opacity(0.9))
+            }
 
             Spacer()
         }
@@ -66,8 +76,8 @@ fileprivate extension PixelTextConfiguration {
 
 #Preview {
     ZStack {
-        Color.gray
-        GenresPillView(title: .constant("Series"))
+        PixelColor.dark8
+        GenresPillView(isPresented: .constant(false), title: .constant("Series"))
     }
     .ignoresSafeArea()
 }
