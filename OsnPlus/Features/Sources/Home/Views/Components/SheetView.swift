@@ -38,7 +38,7 @@ struct SheetView: View {
                 
             }
             .scrollBounceBehavior(.basedOnSize)
-            .fadeOutScrollView(fadeLength: 100)
+            .fadeOutScrollView(fadeLength: 75)
             
             Button {
                 withAnimation {

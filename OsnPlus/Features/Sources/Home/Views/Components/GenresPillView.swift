@@ -13,21 +13,25 @@ struct GenresPillView: View {
 
     @Binding var isPresented: Bool
 
-    @Binding var title: String
+    @Binding var category: HomeViewModel.Category
 
     private static let genres: [String] = ["Series", "Movies",
                                            "Arabic", "Kids & Family",
                                            "HBO", "Action",
                                            "Horror", "Comedy",
                                            "Romance", "Crime",
-                                           "Sci-fi", "Drama"] 
+                                           "Sci-fi", "Drama",
+                                           "Documentary", "Reality",
+                                           "Lifestyle"]
 
     var body: some View {
         HStack(alignment: .center, spacing: .p7) {
             Button {
-                // TODO: implement functionality -> Movies, Series
+                withAnimation {
+                    category = category == .movies ? .series : .movies
+                }
             } label: {
-                PixelText(configuration: .pill, text: title)
+                PixelText(configuration: .pill, text: category.rawValue)
                     .transparentButtonStyle(colorStyle: pillColorStyle, type: .capsule)
             }
             .buttonStyle(PixelSizeButtonStyle())
@@ -44,8 +48,8 @@ struct GenresPillView: View {
                         .scaledToFit()
                         .foregroundStyle(pillColorStyle.color)
                         .fontWeight(.semibold)
-                        .frame(width: 11, height: 11)
-                        .offset(y: 5)
+                        .frame(width: 9, height: 9)
+                        .offset(y: 4)
                 }
                 .transparentButtonStyle(colorStyle: pillColorStyle, type: .capsule)
             }
@@ -70,14 +74,14 @@ fileprivate extension PixelTextConfiguration {
     static var pill: PixelTextConfiguration {
         .init(alignment: .center,
               colorStyle: .single(color: PixelColor.light1),
-              fontStyle: .single(font: .medium1))
+              fontStyle: .single(font: .small1))
     }
 }
 
 #Preview {
     ZStack {
         PixelColor.dark8
-        GenresPillView(isPresented: .constant(false), title: .constant("Series"))
+        GenresPillView(isPresented: .constant(false), category: .constant(.movies))
     }
     .ignoresSafeArea()
 }

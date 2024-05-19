@@ -83,14 +83,14 @@ fileprivate extension PixelTextConfiguration {
     static var genres: PixelTextConfiguration {
         .init(alignment: .center,
               colorStyle: .single(color: PixelColor.light1),
-              fontStyle: .single(font: .small1),
+              fontStyle: .single(font: .small2),
               lineLimit: 1)
     }
 
     static var play: PixelTextConfiguration {
         .init(alignment: .center,
               colorStyle: .single(color: PixelColor.dark8),
-              fontStyle: .single(font: .medium2),
+              fontStyle: .single(font: .medium1),
               lineLimit: 1)
     }
 
