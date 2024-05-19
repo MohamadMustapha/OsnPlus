@@ -88,5 +88,5 @@ fileprivate extension PixelTextConfiguration {
 
 #Preview {
     SheetView(isPresented: .constant(true), items: ["Series", "Movies", "Arabic", "Kids & Family", "HBO", "Action", "Horror", "Comedy", "Romance", "Crime", "Sci-fi", "Drama"] )
-        .background(.black)
+        .background(.gray)
 }

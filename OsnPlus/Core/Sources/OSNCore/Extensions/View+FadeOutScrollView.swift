@@ -19,7 +19,7 @@ public extension View {
                 )
                 .frame(height: fadeLength)
 
-                Rectangle().fill(Color.black)
+                Rectangle()
 
                 // Bottom gradient
                 LinearGradient(

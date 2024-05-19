@@ -83,7 +83,7 @@ fileprivate extension PixelTextConfiguration {
     static var genres: PixelTextConfiguration {
         .init(alignment: .center,
               colorStyle: .single(color: PixelColor.light1),
-              fontStyle: .single(font: .small3),
+              fontStyle: .single(font: .small1),
               lineLimit: 1)
     }
 
@@ -99,5 +99,5 @@ fileprivate extension PixelTextConfiguration {
 #Preview {
     HeaderActionsView(item: .init(id: 1,
                                   imageUrl: "",
-                                  genres: ["Comedy", "Thriller"]))
+                                  genres: ["Drama", "Crime"]))
 }
