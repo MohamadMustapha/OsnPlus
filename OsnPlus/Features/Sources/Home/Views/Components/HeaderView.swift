@@ -18,7 +18,7 @@ struct HeaderView: View {
 
     var body: some View {
         ZStack(alignment: .bottom) {
-            let height = size.height * 0.6
+            let height = size.height * 0.7
             GeometryReader { proxy in
                 let size = proxy.size
                 let minY = proxy.frame(in: .named("SCROLL")).minY

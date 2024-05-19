@@ -5,10 +5,15 @@
 //  Created by Mohamad Mustapha on 16/05/2024.
 //
 
+import OSNCore
 import Pixel
 import SwiftUI
 
 public struct HomeView: View {
+
+    typealias Model = HomeViewModel.UIState.HomeModel
+
+    @Bindable private var viewModel: HomeViewModel = .init()
 
     @State private var isPresented: Bool = false
 
@@ -16,27 +21,43 @@ public struct HomeView: View {
 
     public var body: some View {
         Group {
-            ZStack {
-                PixelColor.dark8
-                    .ignoresSafeArea()
+            switch viewModel.state {
+            case .loading:
+                ProgressView()
+            case .loaded(let model):
+                loadedView(model: model)
+            case .error:
+                EmptyView()
+            }
+        }
+        .blur(radius: isPresented ? 10 : 0)
+        .onAppear {
+            viewModel.onAppear()
+        }
+    }
 
-                GeometryReader {
-                    let safeArea = $0.safeAreaInsets
-                    let size = $0.size
-                    ScrollView(.vertical, showsIndicators: false) {
-                        ZStack(alignment: .top) {
-                            HeaderView(size: size, safeArea: safeArea, item: .init(id: 1, imageUrl: "", genres: ["Comedy", "Thriller"]))
-                            GenresPillView(isPresented: $isPresented, title: .constant("Series"))
-                                .padding(.vertical, safeArea.top)
-                        }
-                    }
-                    .coordinateSpace(name: "SCROLL")
-                    .ignoresSafeArea()
-//                    .scrollBounceBehavior(.basedOnSize)
+    @ViewBuilder
+    func loadedView(model: Model) -> some View {
+        ZStack {
+            PixelColor.dark8
+                .ignoresSafeArea()
+
+            GeometryReader {
+                let safeArea = $0.safeAreaInsets
+                let size = $0.size
+                ScrollView(.vertical, showsIndicators: false) {
+                    HeaderView(size: size, safeArea: safeArea, item: model.headerItem)
+                }
+                .coordinateSpace(name: "SCROLL")
+                .ignoresSafeArea()
+//                .scrollBounceBehavior(.basedOnSize)
+
+                VStack(spacing: .p2) {
+                    TopBarView(name: "Mohamad")
+                    GenresPillView(isPresented: $isPresented, category: $viewModel.category)
                 }
             }
         }
-        .blur(radius: isPresented ? 15 : 0)
     }
 }
 
