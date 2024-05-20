@@ -9,27 +9,20 @@ import Foundation
 
 public struct ItemModel: Identifiable {
 
-    public enum CardType {
-
-        case charts(rank: Int), plain
-    }
-
     public let id: Int
 
     public let imageUrl: String
     public let title: String
-    public let type: CardType
-    public var rank: Int? {
-        if case let .charts(rank) = type {
-            return rank
-        }
-        return nil
-    }
 
-    public init(id: Int, imageUrl: String, title: String, type: CardType) {
+
+    public init(id: Int, imageUrl: String, title: String) {
         self.id = id
         self.imageUrl = imageUrl
         self.title = title
-        self.type = type
     }
+
+    public static let mock: Self = .init(id: 1,
+                                         imageUrl: "https://image.tmdb.org/t/p/w500//d5NXSklXo0qyIYkgV94XAgMIckC.jpg",
+                                         title: "Dune"
+    )
 }
