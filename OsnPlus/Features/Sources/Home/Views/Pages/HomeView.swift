@@ -46,7 +46,9 @@ public struct HomeView: View {
                 let safeArea = $0.safeAreaInsets
                 let size = $0.size
                 ScrollView(.vertical, showsIndicators: false) {
-                    HeaderView(size: size, safeArea: safeArea, item: model.headerItem)
+                    VStack(spacing: .p10) {
+                        HeaderView(size: size, safeArea: safeArea, item: model.headerItem)
+                    }
                 }
                 .coordinateSpace(name: "SCROLL")
                 .ignoresSafeArea()
