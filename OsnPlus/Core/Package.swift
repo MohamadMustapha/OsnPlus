@@ -13,6 +13,7 @@ let package: Package = .init(
     dependencies: [
         // Dependencies declare other packages that this package depends on.
         // MARK: Libraries
+        .kingFisherPackageDependency,
         .pixelPackageDependency
     ],
     targets: [
@@ -31,6 +32,9 @@ fileprivate extension Product {
 fileprivate extension Package.Dependency {
 
     // MARK: Libraries
+    static let kingFisherPackageDependency: Package.Dependency = package(url: "https://github.com/onevcat/Kingfisher.git",
+                                                                         exact: "7.11.0")
+
     static let pixelPackageDependency: Package.Dependency = package(url: "https://github.com/SweepLebanon/Pixel-AppleOS",
                                                                     exact: "1.0.9")
 }
@@ -44,6 +48,7 @@ fileprivate extension String {
     static let core: String = "OSNCore"
 
     // MARK: Libraries
+    static let kingFisher: String = "Kingfisher"
     static let pixel: String = "Pixel"
     static let pixelAppleOS: String = "Pixel-AppleOS"
 
@@ -57,8 +62,9 @@ fileprivate extension SupportedPlatform {
 
 fileprivate extension Target {
 
-    static let coreTarget: Target = target(name: .core,
-                                           dependencies: [.pixelDependency])
+    static let coreTarget: Target = .target(name: .core,
+                                            dependencies: [.kingFisherDependency,
+                                                           .pixelDependency])
 }
 
 fileprivate extension Target.Dependency {
@@ -67,6 +73,8 @@ fileprivate extension Target.Dependency {
     static let coreDependency: Target.Dependency = byName(name: .core)
 
     // MARK: Libraries
+
+    static let kingFisherDependency: Target.Dependency = byName(name: .kingFisher)
     static let pixelDependency: Target.Dependency = product(name: .pixel,
                                                             package: .pixelAppleOS)
 }

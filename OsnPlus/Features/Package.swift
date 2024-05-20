@@ -50,7 +50,7 @@ fileprivate extension Package.Dependency {
 
     // MARK: Libraries
     static let kingFisherPackageDependency: Package.Dependency = package(url: "https://github.com/onevcat/Kingfisher.git",
-                                                                         exact: "7.10.2")
+                                                                         exact: "7.11.0")
     static let pixelPackageDependency: Package.Dependency = package(url: "https://github.com/SweepLebanon/Pixel-AppleOS.git",
                                                                     exact: "1.0.9")
 

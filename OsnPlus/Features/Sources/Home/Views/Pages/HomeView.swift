@@ -50,7 +50,7 @@ public struct HomeView: View {
                 }
                 .coordinateSpace(name: "SCROLL")
                 .ignoresSafeArea()
-//                .scrollBounceBehavior(.basedOnSize)
+                .scrollBounceBehavior(.basedOnSize)
 
                 VStack(spacing: .p2) {
                     TopBarView(name: "Mohamad")
