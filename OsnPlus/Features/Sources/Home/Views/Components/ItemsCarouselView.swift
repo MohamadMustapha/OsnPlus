@@ -24,7 +24,7 @@ struct ItemsCarouselView: View {
                         ZStack(alignment: .bottomLeading) {
                             ItemCardView(item: item)
 
-                            Text(index.description)
+                            Text((index + 1).description)
                                 .fontWeight(.bold)
                                 .font(.system(size: 90))
                                 .foregroundStyle(PixelColor.light1)

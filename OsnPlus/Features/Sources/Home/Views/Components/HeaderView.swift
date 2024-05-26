@@ -24,7 +24,7 @@ struct HeaderView: View {
                 let minY = proxy.frame(in: .named("SCROLL")).minY
                 let progress = minY / height
 
-                KFImage(URL(string: /*item.imageUrl*/ "https://image.tmdb.org/t/p/w500//d5NXSklXo0qyIYkgV94XAgMIckC.jpg"))
+                KFImage(URL(string: item.imageUrl))
                     .placeholder {
                         ProgressView()
                     }

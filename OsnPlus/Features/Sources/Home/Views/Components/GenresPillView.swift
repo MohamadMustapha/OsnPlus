@@ -13,7 +13,7 @@ struct GenresPillView: View {
 
     @Binding var isPresented: Bool
 
-    @Binding var category: HomeViewModel.Category
+    @Binding var category: Category
 
     private static let genres: [String] = ["Series", "Movies",
                                            "Arabic", "Kids & Family",
