@@ -61,11 +61,17 @@ class HomeViewModel {
                 return []
             }
         }()
-        return try await getSections(from: tasks)
+
+        let sections: [ItemsCarouselModel] = try await getSections(from: tasks)
+        let header: HeaderModel = .init(id: 1,
+                                            imageUrl: "https://image.tmdb.org/t/p/w500//d5NXSklXo0qyIYkgV94XAgMIckC.jpg",
+                                            genres: ["Comedy", "Thriller"])
+
+        return UIState.HomeModel(headerItem: header, sections: sections)
     }
 
     // TODO: fix bug of Sections returning in different order
-    private func getSections(from tasks: [Section]) async throws -> UIState.HomeModel {
+    private func getSections(from tasks: [Section]) async throws -> [ItemsCarouselModel] {
         var sections: [ItemsCarouselModel] = []
         sections.reserveCapacity(tasks.count)
 
@@ -88,14 +94,6 @@ class HomeViewModel {
                     return results
                 }
         )
-
-        // TODO: need to rework the Header
-//        guard let randomHeader: ItemModel = sections[ else {throw ViewModelError.invalidHeader }
-//        let header: HeaderModel = .init(id: randomHeader.id, imageUrl: randomHeader.imageUrl, genres: ["Comedy", "Drama"])
-
-        let header: HeaderModel = .init(id: 1,
-                                            imageUrl: "https://image.tmdb.org/t/p/w500//d5NXSklXo0qyIYkgV94XAgMIckC.jpg",
-                                            genres: ["Comedy", "Thriller"])
-        return UIState.HomeModel(headerItem: header, sections: sections)
+        return sections
     }
 }

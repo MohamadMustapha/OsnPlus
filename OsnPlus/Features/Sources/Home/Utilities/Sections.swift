@@ -31,18 +31,9 @@ enum MovieSections: String, CaseIterable, Section {
 
     var type: ItemsCarouselModel.CarouselType {
         switch self {
-        case .mustWatch:
-                .plain
-        case .trending:
-                .plain
-        case .comingSoon:
-                .plain
-        case .blockBuster:
-                .plain
-        case .justAdded:
-                .plain
         case .topMovies:
                 .charts
+        default: .plain
         }
     }
     func fetch(using service: HomeServiceImplementation) async throws -> [ItemModel] {
