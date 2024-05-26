@@ -31,8 +31,8 @@ public struct HomeView: View {
             }
         }
         .blur(radius: isPresented ? 10 : 0)
-        .onAppear {
-            viewModel.onAppear()
+        .task {
+            await viewModel.onAppear()
         }
     }
 
@@ -48,6 +48,10 @@ public struct HomeView: View {
                 ScrollView(.vertical, showsIndicators: false) {
                     VStack(spacing: .p10) {
                         HeaderView(size: size, safeArea: safeArea, item: model.headerItem)
+
+                        ForEach(model.sections, id: \.id) { section in
+                            ItemsCarouselView(carousel: section)
+                        }
                     }
                 }
                 .coordinateSpace(name: "SCROLL")
