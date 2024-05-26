@@ -37,6 +37,10 @@ struct HomeServiceImplementation: HomeService {
         return try await fetch(using: api.getJustAdded)
     }
 
+    func getTopMovies() async throws -> [ItemModel] {
+        return try await fetch(using: api.getTopMovies)
+    }
+
     private func fetch(using method: @escaping (_ pages: Int) async throws -> MovieResponse, upTo pages: Int = 1) async throws-> [ItemModel] {
         var items: [ItemModel] = []
         items.reserveCapacity(pages*20)

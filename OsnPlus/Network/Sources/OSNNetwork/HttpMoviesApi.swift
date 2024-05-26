@@ -30,4 +30,8 @@ public struct HttpMoviesApi: MoviesApi {
     public func getJustAdded(pages: Int = 1) async throws -> MovieResponse {
         return try await fetch(type: MovieResponse.self, with: generateUrlRequest(from: generateUrl(route: "movie", endpoint: "now_playing"), pages: pages))
     }
+
+    public func getTopMovies(pages: Int = 1) async throws -> MovieResponse {
+        return try await fetch(type: MovieResponse.self, with: generateUrlRequest(from: generateUrl(route: "movie", endpoint: "popular"), pages: pages))
+    }
 }

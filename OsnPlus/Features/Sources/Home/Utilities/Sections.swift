@@ -27,6 +27,7 @@ enum MovieSections: String, CaseIterable, Section {
     case comingSoon = "Coming Soon"
     case blockBuster = "Blockbuster Movies"
     case justAdded = "Just Added"
+    case topMovies = "Top 10 Movies in Lebanon"
 
     var type: ItemsCarouselModel.CarouselType {
         switch self {
@@ -40,6 +41,8 @@ enum MovieSections: String, CaseIterable, Section {
                 .plain
         case .justAdded:
                 .plain
+        case .topMovies:
+                .charts
         }
     }
     func fetch(using service: HomeServiceImplementation) async throws -> [ItemModel] {
@@ -54,6 +57,8 @@ enum MovieSections: String, CaseIterable, Section {
             return try await service.getBlockBuster()
         case .justAdded:
             return try await service.getJustAdded()
+        case .topMovies:
+            return try await service.getTopMovies()
         }
     }
 }

@@ -19,6 +19,7 @@ protocol MoviesApi: Api {
     func getBlockBuster(pages: Int) async throws -> MovieResponse
     // Now Playing
     func getJustAdded(pages: Int) async throws -> MovieResponse
-
+    // Popular but only first 10
+    func getTopMovies(pages: Int) async throws -> MovieResponse
 //    func getDetails(by id: Int) async throws ->
 }

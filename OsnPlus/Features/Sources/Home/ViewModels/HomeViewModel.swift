@@ -78,7 +78,7 @@ class HomeViewModel {
                             let items = try await task.fetch(using: self.service)
                             return .init(type: task.type,
                                          headline: task.rawValue,
-                                         items: items)
+                                         items: task.type == .charts ? Array(items.prefix(upTo: 10)) : items.shuffled()) // need to shuffle the items always because of online API discrepancies, however top 10 api is correct so don't shuffle
                         }
                     }
                     var results: [ItemsCarouselModel] = []

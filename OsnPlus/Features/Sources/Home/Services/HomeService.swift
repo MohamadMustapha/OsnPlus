@@ -21,4 +21,6 @@ protocol HomeService {
     func getBlockBuster() async throws -> [ItemModel]
     // Now Playing
     func getJustAdded() async throws -> [ItemModel]
+    // Popular
+    func getTopMovies() async throws -> [ItemModel]
 }
