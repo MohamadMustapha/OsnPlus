@@ -19,12 +19,12 @@ struct HeaderView: View {
     var body: some View {
         ZStack(alignment: .bottom) {
             let height = size.height * 0.7
-            GeometryReader { proxy in
-                let size = proxy.size
-                let minY = proxy.frame(in: .named("SCROLL")).minY
+            GeometryReader {
+                let size = $0.size
+                let minY = $0.frame(in: .named("SCROLL")).minY
                 let progress = minY / height
 
-                KFImage(URL(string: item.imageUrl))
+                KFImage(.init(string: item.imageUrl))
                     .placeholder {
                         ProgressView()
                     }
