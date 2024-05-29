@@ -54,10 +54,8 @@ class HomeViewModel {
         let tasks: [Section] = {
             switch category {
             case .movies:
-                print("movies load")
                 return MovieSections.allCases
             case .series:
-                print("series laod")
                 return []
             }
         }()
