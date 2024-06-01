@@ -67,11 +67,12 @@ struct SearchBarView: View {
             }
             .buttonStyle(DecreaseSizeButtonStyle())
             .isHidden(!isFocused, remove: !isFocused)
+            // animation bug
             .transition(.asymmetric(insertion: .move(edge: .trailing),
-                                    removal: .slide).combined(with: .opacity))
-            .animation(.default, value: isFocused)
+                                    removal: .move(edge: .trailing)).combined(with: .opacity))
+            .animation(.smooth, value: isFocused)
         }
-        .animation(.default, value: isFocused)
+        .animation(.smooth, value: isFocused)
     }
 }
 

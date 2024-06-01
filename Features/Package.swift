@@ -97,7 +97,7 @@ fileprivate extension Target {
                                                           .networkDependency,
                                                           .kingFisherDependency,
                                                           .pixelDependency])
-    
+
     static let homeTestTarget: Target = testTarget(name: .home.testTarget,
                                                    dependencies: [.homeDependency])
 

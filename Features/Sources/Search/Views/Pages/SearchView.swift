@@ -15,9 +15,10 @@ public struct SearchView: View {
 
     public var body: some View {
         VStack {
-
             SearchBarView(searchText: $searchText)
+            Spacer()
         }
+        .padding(.horizontal, .p10)
     }
 }
 
