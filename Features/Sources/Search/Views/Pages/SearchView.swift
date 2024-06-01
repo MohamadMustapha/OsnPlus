@@ -9,10 +9,16 @@ import SwiftUI
 
 public struct SearchView: View {
 
-    public init() { }
+    @State private var searchText: String = ""
+
+    public init() {}
 
     public var body: some View {
-        Text(/*@START_MENU_TOKEN@*/"Hello, World!"/*@END_MENU_TOKEN@*/)
+        VStack {
+            SearchBarView(searchText: $searchText)
+            Spacer()
+        }
+        .padding(.horizontal, .p10)
     }
 }
 

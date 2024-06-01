@@ -7,12 +7,12 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		D13EF5902BF6899900075256 /* Pixel in Frameworks */ = {isa = PBXBuildFile; productRef = D13EF58F2BF6899900075256 /* Pixel */; };
-		D17781EA2BF55A3D0040B8D9 /* OSNCore in Frameworks */ = {isa = PBXBuildFile; productRef = D17781E92BF55A3D0040B8D9 /* OSNCore */; };
-		D17781EC2BF55A3D0040B8D9 /* Home in Frameworks */ = {isa = PBXBuildFile; productRef = D17781EB2BF55A3D0040B8D9 /* Home */; };
-		D17781EE2BF55A3D0040B8D9 /* Profile in Frameworks */ = {isa = PBXBuildFile; productRef = D17781ED2BF55A3D0040B8D9 /* Profile */; };
-		D17781F02BF55A3D0040B8D9 /* Search in Frameworks */ = {isa = PBXBuildFile; productRef = D17781EF2BF55A3D0040B8D9 /* Search */; };
-		D17781F22BF55A3D0040B8D9 /* OSNNetwork in Frameworks */ = {isa = PBXBuildFile; productRef = D17781F12BF55A3D0040B8D9 /* OSNNetwork */; };
+		D12749792C0B60DD0021EAD7 /* OSNCore in Frameworks */ = {isa = PBXBuildFile; productRef = D12749782C0B60DD0021EAD7 /* OSNCore */; };
+		D127497B2C0B60DD0021EAD7 /* Home in Frameworks */ = {isa = PBXBuildFile; productRef = D127497A2C0B60DD0021EAD7 /* Home */; };
+		D127497D2C0B60DD0021EAD7 /* Profile in Frameworks */ = {isa = PBXBuildFile; productRef = D127497C2C0B60DD0021EAD7 /* Profile */; };
+		D127497F2C0B60DD0021EAD7 /* Search in Frameworks */ = {isa = PBXBuildFile; productRef = D127497E2C0B60DD0021EAD7 /* Search */; };
+		D12749812C0B60DD0021EAD7 /* OSNNetwork in Frameworks */ = {isa = PBXBuildFile; productRef = D12749802C0B60DD0021EAD7 /* OSNNetwork */; };
+		D12749852C0B60F40021EAD7 /* Pixel in Frameworks */ = {isa = PBXBuildFile; productRef = D12749842C0B60F40021EAD7 /* Pixel */; };
 		D1EA0C122BF1536E005A5B07 /* OsnPlusApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = D1EA0C112BF1536E005A5B07 /* OsnPlusApp.swift */; };
 		D1EA0C142BF1536E005A5B07 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D1EA0C132BF1536E005A5B07 /* ContentView.swift */; };
 		D1EA0C162BF15370005A5B07 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = D1EA0C152BF15370005A5B07 /* Assets.xcassets */; };
@@ -20,9 +20,9 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
-		D17781E82BF554CF0040B8D9 /* Network */ = {isa = PBXFileReference; lastKnownFileType = wrapper; name = Network; path = OsnPlus/Network; sourceTree = "<group>"; };
-		D1B153F22BF2AE360047D42B /* Features */ = {isa = PBXFileReference; lastKnownFileType = wrapper; name = Features; path = OsnPlus/Features; sourceTree = "<group>"; };
-		D1B153F32BF2AE4C0047D42B /* Core */ = {isa = PBXFileReference; lastKnownFileType = wrapper; name = Core; path = OsnPlus/Core; sourceTree = "<group>"; };
+		D12749752C0B5FC60021EAD7 /* Network */ = {isa = PBXFileReference; lastKnownFileType = wrapper; path = Network; sourceTree = "<group>"; };
+		D12749762C0B5FE30021EAD7 /* Core */ = {isa = PBXFileReference; lastKnownFileType = wrapper; path = Core; sourceTree = "<group>"; };
+		D12749772C0B60220021EAD7 /* Features */ = {isa = PBXFileReference; lastKnownFileType = wrapper; path = Features; sourceTree = "<group>"; };
 		D1EA0C0E2BF1536E005A5B07 /* OsnPlus.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = OsnPlus.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		D1EA0C112BF1536E005A5B07 /* OsnPlusApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OsnPlusApp.swift; sourceTree = "<group>"; };
 		D1EA0C132BF1536E005A5B07 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
@@ -35,12 +35,12 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				D17781F02BF55A3D0040B8D9 /* Search in Frameworks */,
-				D17781EE2BF55A3D0040B8D9 /* Profile in Frameworks */,
-				D17781EA2BF55A3D0040B8D9 /* OSNCore in Frameworks */,
-				D13EF5902BF6899900075256 /* Pixel in Frameworks */,
-				D17781F22BF55A3D0040B8D9 /* OSNNetwork in Frameworks */,
-				D17781EC2BF55A3D0040B8D9 /* Home in Frameworks */,
+				D12749812C0B60DD0021EAD7 /* OSNNetwork in Frameworks */,
+				D127497F2C0B60DD0021EAD7 /* Search in Frameworks */,
+				D127497D2C0B60DD0021EAD7 /* Profile in Frameworks */,
+				D12749852C0B60F40021EAD7 /* Pixel in Frameworks */,
+				D12749792C0B60DD0021EAD7 /* OSNCore in Frameworks */,
+				D127497B2C0B60DD0021EAD7 /* Home in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -57,9 +57,9 @@
 		D1EA0C052BF1536E005A5B07 = {
 			isa = PBXGroup;
 			children = (
-				D17781E82BF554CF0040B8D9 /* Network */,
-				D1B153F32BF2AE4C0047D42B /* Core */,
-				D1B153F22BF2AE360047D42B /* Features */,
+				D12749772C0B60220021EAD7 /* Features */,
+				D12749762C0B5FE30021EAD7 /* Core */,
+				D12749752C0B5FC60021EAD7 /* Network */,
 				D1EA0C102BF1536E005A5B07 /* OsnPlus */,
 				D1EA0C0F2BF1536E005A5B07 /* Products */,
 				D17781DA2BF552AA0040B8D9 /* Frameworks */,
@@ -110,12 +110,12 @@
 			);
 			name = OsnPlus;
 			packageProductDependencies = (
-				D17781E92BF55A3D0040B8D9 /* OSNCore */,
-				D17781EB2BF55A3D0040B8D9 /* Home */,
-				D17781ED2BF55A3D0040B8D9 /* Profile */,
-				D17781EF2BF55A3D0040B8D9 /* Search */,
-				D17781F12BF55A3D0040B8D9 /* OSNNetwork */,
-				D13EF58F2BF6899900075256 /* Pixel */,
+				D12749782C0B60DD0021EAD7 /* OSNCore */,
+				D127497A2C0B60DD0021EAD7 /* Home */,
+				D127497C2C0B60DD0021EAD7 /* Profile */,
+				D127497E2C0B60DD0021EAD7 /* Search */,
+				D12749802C0B60DD0021EAD7 /* OSNNetwork */,
+				D12749842C0B60F40021EAD7 /* Pixel */,
 			);
 			productName = OsnPlus;
 			productReference = D1EA0C0E2BF1536E005A5B07 /* OsnPlus.app */;
@@ -312,11 +312,13 @@
 				DEVELOPMENT_TEAM = VV2UJ2245R;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_KEY_CFBundleDisplayName = "Osn+";
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				INFOPLIST_KEY_UIUserInterfaceStyle = Dark;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -341,11 +343,13 @@
 				DEVELOPMENT_TEAM = VV2UJ2245R;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_KEY_CFBundleDisplayName = "Osn+";
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				INFOPLIST_KEY_UIUserInterfaceStyle = Dark;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -394,30 +398,30 @@
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
-		D13EF58F2BF6899900075256 /* Pixel */ = {
-			isa = XCSwiftPackageProductDependency;
-			package = D13EF58E2BF6899900075256 /* XCRemoteSwiftPackageReference "Pixel-AppleOS" */;
-			productName = Pixel;
-		};
-		D17781E92BF55A3D0040B8D9 /* OSNCore */ = {
+		D12749782C0B60DD0021EAD7 /* OSNCore */ = {
 			isa = XCSwiftPackageProductDependency;
 			productName = OSNCore;
 		};
-		D17781EB2BF55A3D0040B8D9 /* Home */ = {
+		D127497A2C0B60DD0021EAD7 /* Home */ = {
 			isa = XCSwiftPackageProductDependency;
 			productName = Home;
 		};
-		D17781ED2BF55A3D0040B8D9 /* Profile */ = {
+		D127497C2C0B60DD0021EAD7 /* Profile */ = {
 			isa = XCSwiftPackageProductDependency;
 			productName = Profile;
 		};
-		D17781EF2BF55A3D0040B8D9 /* Search */ = {
+		D127497E2C0B60DD0021EAD7 /* Search */ = {
 			isa = XCSwiftPackageProductDependency;
 			productName = Search;
 		};
-		D17781F12BF55A3D0040B8D9 /* OSNNetwork */ = {
+		D12749802C0B60DD0021EAD7 /* OSNNetwork */ = {
 			isa = XCSwiftPackageProductDependency;
 			productName = OSNNetwork;
+		};
+		D12749842C0B60F40021EAD7 /* Pixel */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = D13EF58E2BF6899900075256 /* XCRemoteSwiftPackageReference "Pixel-AppleOS" */;
+			productName = Pixel;
 		};
 /* End XCSwiftPackageProductDependency section */
 	};
