@@ -32,6 +32,7 @@ struct SearchBarView: View {
                 .focused($isFocused)
                 .foregroundStyle(PixelColor.dark8)
                 .font(PixelFont.medium3.font)
+                .submitLabel(.search)
 
                 Spacer()
 
@@ -67,10 +68,6 @@ struct SearchBarView: View {
             }
             .buttonStyle(DecreaseSizeButtonStyle())
             .isHidden(!isFocused, remove: !isFocused)
-            // animation bug
-            .transition(.asymmetric(insertion: .move(edge: .trailing),
-                                    removal: .move(edge: .trailing)).combined(with: .opacity))
-            .animation(.smooth, value: isFocused)
         }
         .animation(.smooth, value: isFocused)
     }
@@ -97,7 +94,6 @@ fileprivate extension PixelTextConfiguration {
 
 #Preview {
     ZStack {
-        Color.gray
 
         VStack {
             SearchBarView(searchText: .constant(""))
