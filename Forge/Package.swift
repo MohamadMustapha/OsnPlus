@@ -1,0 +1,67 @@
+// swift-tools-version: 5.10
+// The swift-tools-version declares the minimum version of Swift required to build this package.
+
+import PackageDescription
+
+let package = Package(
+    name: .package,
+    platforms: [.iOS],
+    products: [
+        .forgeProduct
+    ],
+    targets: [
+        .forgeTarget,
+        .forgeTestTarget
+    ]
+)
+
+fileprivate extension Package.Dependency {
+
+    static let swiftLintPackageDependency: Package.Dependency = package(url: "https://github.com/realm/SwiftLint.git",
+                                                                        from: "0.55.0")
+}
+
+fileprivate extension Product {
+
+    static let forgeProduct: Product = .library(name: .forge,
+                                                targets: [.forge])
+}
+
+fileprivate extension String {
+
+    // MARK: Package
+    static let package: String = "Forge"
+
+    // MARK: Modules
+    static let forge: String = "Forge"
+
+    // MARK: Plugins
+    static let swiftLint: String = "SwiftLint"
+    static let swiftLintPlugin: String = "SwiftLintBuildToolPlugin"
+
+    // MARK: Test Modules
+    var testTarget: String { "\(self)Tests" }
+}
+
+fileprivate extension SupportedPlatform {
+
+    static let iOS: SupportedPlatform = .iOS(.v17)
+}
+
+fileprivate extension Target {
+
+    static let forgeTarget: Target = target(name: .forge)
+    static let forgeTestTarget: Target = testTarget(name: .forge.testTarget,
+                                                    dependencies: [.forgeDependency])
+}
+
+fileprivate extension Target.Dependency {
+
+    static let forgeDependency: Target.Dependency = byName(name: .forge)
+}
+
+fileprivate extension Target.PluginUsage {
+
+    static let swiftLintPlugin: Target.PluginUsage = plugin(name: .swiftLintPlugin,
+                                                            package: .swiftLint)
+}

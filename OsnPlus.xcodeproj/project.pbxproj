@@ -20,6 +20,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		BE2043B12C0B53A3008724BE /* Forge */ = {isa = PBXFileReference; lastKnownFileType = wrapper; path = Forge; sourceTree = "<group>"; };
 		D12749752C0B5FC60021EAD7 /* Network */ = {isa = PBXFileReference; lastKnownFileType = wrapper; path = Network; sourceTree = "<group>"; };
 		D12749762C0B5FE30021EAD7 /* Core */ = {isa = PBXFileReference; lastKnownFileType = wrapper; path = Core; sourceTree = "<group>"; };
 		D12749772C0B60220021EAD7 /* Features */ = {isa = PBXFileReference; lastKnownFileType = wrapper; path = Features; sourceTree = "<group>"; };
@@ -57,8 +58,9 @@
 		D1EA0C052BF1536E005A5B07 = {
 			isa = PBXGroup;
 			children = (
-				D12749772C0B60220021EAD7 /* Features */,
 				D12749762C0B5FE30021EAD7 /* Core */,
+				D12749772C0B60220021EAD7 /* Features */,
+				BE2043B12C0B53A3008724BE /* Forge */,
 				D12749752C0B5FC60021EAD7 /* Network */,
 				D1EA0C102BF1536E005A5B07 /* OsnPlus */,
 				D1EA0C0F2BF1536E005A5B07 /* Products */,
@@ -130,6 +132,7 @@
 				BuildIndependentTargetsInParallel = 1;
 				LastSwiftUpdateCheck = 1530;
 				LastUpgradeCheck = 1530;
+				ORGANIZATIONNAME = "OSN+";
 				TargetAttributes = {
 					D1EA0C0D2BF1536E005A5B07 = {
 						CreatedOnToolsVersion = 15.3;
@@ -309,7 +312,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_ASSET_PATHS = "\"OsnPlus/Preview Content\"";
-				DEVELOPMENT_TEAM = VV2UJ2245R;
+				DEVELOPMENT_TEAM = HQ5CB3L666;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_KEY_CFBundleDisplayName = "Osn+";
@@ -340,7 +343,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_ASSET_PATHS = "\"OsnPlus/Preview Content\"";
-				DEVELOPMENT_TEAM = VV2UJ2245R;
+				DEVELOPMENT_TEAM = HQ5CB3L666;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_KEY_CFBundleDisplayName = "Osn+";
