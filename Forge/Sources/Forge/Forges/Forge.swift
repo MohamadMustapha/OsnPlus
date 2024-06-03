@@ -13,6 +13,10 @@ public struct Forge<Dependency> {
 
     private var dependency: Dependency
 
+    public init(_ keyPath: KeyPath<ForgeContainer, Dependency>) {
+        self.dependency = ForgeContainer.shared[keyPath: keyPath]
+    }
+    
     public init<C: ForgeSharedContainer>(_ keyPath: KeyPath<C, Dependency>) {
         self.dependency = C.shared[keyPath: keyPath]
     }

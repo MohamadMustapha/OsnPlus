@@ -1,5 +1,5 @@
 //
-//  ForgeKey.swift
+//  ForgeSharedContainer.swift
 //  Forge
 //
 //  Created by Khaled Chehabeddine on 01/06/2024.
@@ -8,9 +8,7 @@
 
 import Foundation
 
-public protocol ForgeKey {
+public protocol ForgeSharedContainer: ForgeManagedContainer, Sendable {
 
-    associatedtype Value
-
-    static var currentValue: Value { get set }
+    static var shared: Self { get }
 }

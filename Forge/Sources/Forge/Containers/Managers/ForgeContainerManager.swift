@@ -8,7 +8,7 @@
 
 import Foundation
 
-public final class ForgeContainerManager {
+public final class ForgeContainerManager: Sendable {
 
     public init() { }
 }

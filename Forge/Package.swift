@@ -17,7 +17,6 @@ let package = Package(
 
 fileprivate extension Package.Dependency {
 
-    // MARK: Plugins
     static let swiftLintPackageDependency: Package.Dependency = package(url: "https://github.com/realm/SwiftLint.git",
                                                                         from: "0.55.0")
 }
@@ -35,10 +34,6 @@ fileprivate extension String {
 
     // MARK: Modules
     static let forge: String = "Forge"
-
-    // MARK: Local Packages
-
-    // MARK: Third Party Packages
 
     // MARK: Plugins
     static let swiftLint: String = "SwiftLint"
@@ -62,7 +57,6 @@ fileprivate extension Target {
 
 fileprivate extension Target.Dependency {
 
-    // MARK: Modules
     static let forgeDependency: Target.Dependency = byName(name: .forge)
 }
 

@@ -13,5 +13,5 @@ public protocol ForgeFactoryProtocol {
     associatedtype Parameter
     associatedtype Dependency
 
-
+    var resolver: ForgeFactoryResolver<Parameter, Dependency> { get set }
 }

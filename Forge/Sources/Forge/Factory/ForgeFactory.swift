@@ -8,6 +8,9 @@
 
 import Foundation
 
-public struct ForgeFactory<T> {
+public struct ForgeFactory<T>
+//: ForgeFactoryProtocol
+{
     
+//    public var resolver: ForgeFactoryResolver<Void, T>
 }
