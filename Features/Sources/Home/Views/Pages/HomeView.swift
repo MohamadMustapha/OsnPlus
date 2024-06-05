@@ -53,9 +53,10 @@ public struct HomeView: View {
                         ItemsCarouselView(carousel: section)
                     }
                 }
+                .padding(.bottom, .p10)
             }
             .coordinateSpace(name: "SCROLL")
-            .ignoresSafeArea()
+            .ignoresSafeArea(.all, edges: [.top])
             .scrollBounceBehavior(.basedOnSize)
 
             VStack(spacing: .p2) {

@@ -7,6 +7,7 @@
 
 import Observation
 import OSNCore
+import OSNNetwork
 import SwiftUI
 
 @Observable
@@ -28,7 +29,8 @@ class HomeViewModel {
         case loading, loaded(model: HomeModel), error
     }
 
-    @ObservationIgnored private let service: HomeServiceImplementation = .init(api: .init())
+    @ObservationIgnored private let service: HomeServiceImplementation = .init(moviesService: MoviesServiceImplementation(api: HttpMoviesApi()),
+                                                                               seriesService: SeriesServiceImplementation(api: HttpSeriesApi()))
 
     private(set) var state: UIState = .loading
     // TODO: fix bug of category not updating on binding change
@@ -56,7 +58,7 @@ class HomeViewModel {
             case .movies:
                 return MovieSections.allCases
             case .series:
-                return []
+                return SeriesSection.allCases
             }
         }()
 
