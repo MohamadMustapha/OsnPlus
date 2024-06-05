@@ -11,7 +11,7 @@ import OSNNetwork
 import SwiftUI
 
 @Observable
-class HomeViewModel {
+final class HomeViewModel {
 
     enum ViewModelError: Error {
 
