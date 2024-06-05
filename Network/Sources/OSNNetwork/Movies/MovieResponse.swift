@@ -1,8 +1,8 @@
 //
-//  MovieResponse.swift
+//  ItemResponse.swift
 //
 //
-//  Created by Mohamad Mustapha on 23/05/2024.
+//  Created by Mohamad Mustapha on 01/06/2024.
 //
 
 import Foundation
@@ -13,7 +13,7 @@ public struct MovieResponse: Codable {
     public let results: [Movie]
 }
 
-public struct Movie: Codable, Identifiable {
+public struct Movie: Identifiable, Codable {
 
     public let id: Int
 

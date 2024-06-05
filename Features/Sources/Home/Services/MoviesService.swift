@@ -1,15 +1,17 @@
 //
-//  HomeService.swift
+//  MoviesService.swift
 //
 //
-//  Created by Mohamad Mustapha on 23/05/2024.
+//  Created by Mohamad Mustapha on 03/06/2024.
 //
 
 import OSNCore
 import OSNNetwork
 import Foundation
 
-protocol HomeService {
+public protocol MoviesService {
+
+    var api: MoviesApi { get }
 
     // Popular
     func getMustWatch() async throws -> [ItemModel]

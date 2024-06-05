@@ -23,11 +23,11 @@ enum Category: String {
 enum MovieSections: String, CaseIterable, Section {
 
     case mustWatch = "Must Watch"
-    case trending = "Trending on OSN+"
+    case trending = "Trending On OSN+"
     case comingSoon = "Coming Soon"
     case blockBuster = "Blockbuster Movies"
     case justAdded = "Just Added"
-    case topMovies = "Top 10 Movies in Lebanon"
+    case topMovies = "Top 10 Movies In Lebanon"
 
     var type: ItemsCarouselModel.CarouselType {
         switch self {
@@ -36,20 +36,42 @@ enum MovieSections: String, CaseIterable, Section {
         default: .plain
         }
     }
+
     func fetch(using service: HomeServiceImplementation) async throws -> [ItemModel] {
         switch self {
         case .mustWatch:
-            return try await service.getMustWatch()
+            return try await service.moviesService.getMustWatch()
         case .trending:
-            return try await service.getTrending()
+            return try await service.moviesService.getTrending()
         case .comingSoon:
-            return try await service.getComingSoon()
+            return try await service.moviesService.getComingSoon()
         case .blockBuster:
-            return try await service.getBlockBuster()
+            return try await service.moviesService.getBlockBuster()
         case .justAdded:
-            return try await service.getJustAdded()
+            return try await service.moviesService.getJustAdded()
         case .topMovies:
-            return try await service.getTopMovies()
+            return try await service.moviesService.getTopMovies()
+        }
+    }
+}
+
+enum SeriesSection: String, CaseIterable, Section {
+
+    case trending = "Trending On OSN+"
+    case boxSets = "Boxsets To Binge On"
+
+    var type: ItemsCarouselModel.CarouselType {
+        switch self {
+        default: .plain
+        }
+    }
+
+    func fetch(using service: HomeServiceImplementation) async throws -> [ItemModel] {
+        switch self {
+        case .trending:
+            return try await service.seriesService.getTrending()
+        case .boxSets:
+            return try await service.seriesService.getTopHits()
         }
     }
 }
