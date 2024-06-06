@@ -9,7 +9,7 @@ import OSNCore
 import Pixel
 import SwiftUI
 
-struct SheetView: View {
+struct GenresSheetView: View {
 
     @Binding var isPresented: Bool
 
@@ -87,6 +87,6 @@ fileprivate extension PixelTextConfiguration {
 }
 
 #Preview {
-    SheetView(isPresented: .constant(true), items: ["Series", "Movies", "Arabic", "Kids & Family", "HBO", "Action", "Horror", "Comedy", "Romance", "Crime", "Sci-fi", "Drama"] )
+    GenresSheetView(isPresented: .constant(true), items: ["Series", "Movies", "Arabic", "Kids & Family", "HBO", "Action", "Horror", "Comedy", "Romance", "Crime", "Sci-fi", "Drama"] )
         .background(.gray)
 }

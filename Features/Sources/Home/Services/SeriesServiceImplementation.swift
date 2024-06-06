@@ -24,10 +24,6 @@ struct SeriesServiceImplementation: SeriesService {
     func getTopHits() async throws -> [ItemModel] {
         return try await fetch(upTo: 2, using: api.getTopHits)
     }
-    
-    func searchSeries(query: String) async throws -> [ItemModel] {
-        return try await parse(from: api.searchSeries(pages: 1, query: query))
-    }
 
     private func fetch(upTo pages: Int = 1, using method: @escaping (_ pages: Int) async throws -> SeriesResponse) async throws-> [ItemModel] {
         var items: [ItemModel] = []

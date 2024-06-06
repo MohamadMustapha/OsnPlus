@@ -17,6 +17,4 @@ public protocol SeriesService {
     func getTrending() async throws -> [ItemModel]
     // Top Rated
     func getTopHits() async throws -> [ItemModel]
-
-    func searchSeries(query: String) async throws -> [ItemModel]
 }

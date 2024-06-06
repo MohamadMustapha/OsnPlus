@@ -11,6 +11,7 @@ import SwiftUI
 public struct ItemsGridView: View {
 
     let items: [ItemModel]
+
     private let columns: [GridItem] = [.init(.flexible(), spacing: .p3, alignment: .top),
                                        .init(.flexible(), spacing: .p3, alignment: .top),
                                        .init(.flexible(), spacing: .p3, alignment: .top)]
