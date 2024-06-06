@@ -23,7 +23,7 @@ public struct HomeView: View {
         Group {
             switch viewModel.state {
             case .loading:
-                ProgressView()
+                OsnLoader()
             case .loaded(let model):
                 loadedView(model: model)
                     .background(

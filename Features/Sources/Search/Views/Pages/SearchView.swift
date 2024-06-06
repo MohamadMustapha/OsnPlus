@@ -29,7 +29,7 @@ public struct SearchView: View {
             Group {
                 switch viewModel.state {
                 case .loading:
-                    ProgressView()
+                    OsnLoader()
                 case .loaded(let model):
                     loadedView(model: model)
                 case .error:
