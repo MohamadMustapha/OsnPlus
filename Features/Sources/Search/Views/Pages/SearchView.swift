@@ -20,8 +20,12 @@ public struct SearchView: View {
     public var body: some View {
         VStack(spacing: .p5) {
             SearchBarView(searchText: $viewModel.searchText)
-                .padding(.horizontal, .p10)
-
+//                .onChange(of: viewModel.searchText) { newValue in
+//                    print(newValue)
+//                    Task {
+//                        if searching {await viewModel.search()}
+//                    }
+//                }
             Group {
                 switch viewModel.state {
                 case .loading:
@@ -29,12 +33,10 @@ public struct SearchView: View {
                 case .loaded(let model):
                     loadedView(model: model)
                 case .error:
-                    EmptyView()
+                    ProgressView()
                 }
             }
-        }
-        .onFirstAppear {
-            await viewModel.onAppear()
+            .frame(maxWidth: .infinity, maxHeight: .infinity, alignment: .center)
         }
     }
 
@@ -42,13 +44,18 @@ public struct SearchView: View {
     func loadedView(model: Model) -> some View {
         ScrollView {
             VStack(alignment: .leading, spacing: .p5) {
-                PixelText(configuration: .title, text: "Trending Movies & Series")
-                ItemsGridView(items: model.trendingItems)
+                    // TODO: animation bug
+                PixelText(configuration: .title, text: searching ? "Search results" : "Trending Movies & Series")
+                ItemsGridView(items: searching ? model.searchItems : model.trendingItems)
             }
-            .padding(.horizontal, .p10)
+            .padding(.p10)
         }
         .scrollBounceBehavior(.basedOnSize)
         .scrollIndicators(.automatic)
+    }
+
+    private var searching: Bool {
+        return viewModel.searchText.count > 1
     }
 }
 

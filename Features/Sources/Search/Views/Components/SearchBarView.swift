@@ -50,7 +50,6 @@ struct SearchBarView: View {
                 .buttonStyle(DecreaseSizeButtonStyle())
                 .isHidden(searchText.isEmpty, remove: searchText.isEmpty)
                 .transition(.scale)
-
             }
             .padding(.p7)
             .background (
@@ -69,6 +68,7 @@ struct SearchBarView: View {
             .buttonStyle(DecreaseSizeButtonStyle())
             .isHidden(!isFocused, remove: !isFocused)
         }
+        .padding(.horizontal, .p10)
         .animation(.smooth, value: isFocused)
     }
 }
