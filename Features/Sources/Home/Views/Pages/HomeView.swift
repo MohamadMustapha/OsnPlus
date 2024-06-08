@@ -23,14 +23,18 @@ public struct HomeView: View {
         Group {
             switch viewModel.state {
             case .loading:
-                ProgressView()
+                OsnLoader()
             case .loaded(let model):
                 loadedView(model: model)
                     .background(
                         PixelColor.dark8
                             .ignoresSafeArea())
             case .error:
-                EmptyView()
+                ErrorView {
+                    Task {
+                        await viewModel.onAppear()
+                    }
+                }
             }
         }
         .blur(radius: isPresented ? 10 : 0)

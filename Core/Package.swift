@@ -14,6 +14,7 @@ let package: Package = .init(
         // Dependencies declare other packages that this package depends on.
         // MARK: Libraries
         .kingFisherPackageDependency,
+        .lottiePackageDependency,
         .pixelPackageDependency
     ],
     targets: [
@@ -35,6 +36,8 @@ fileprivate extension Package.Dependency {
     static let kingFisherPackageDependency: Package.Dependency = package(url: "https://github.com/onevcat/Kingfisher.git",
                                                                          exact: "7.11.0")
 
+    static let lottiePackageDependency: Package.Dependency = package(url: "https://github.com/airbnb/lottie-spm", exact: "4.4.1")
+
     static let pixelPackageDependency: Package.Dependency = package(url: "https://github.com/SweepLebanon/Pixel-AppleOS",
                                                                     exact: "1.0.9")
 }
@@ -49,6 +52,8 @@ fileprivate extension String {
 
     // MARK: Libraries
     static let kingFisher: String = "Kingfisher"
+    static let lottie: String = "Lottie"
+    static let lottieSpm: String = "lottie-spm"
     static let pixel: String = "Pixel"
     static let pixelAppleOS: String = "Pixel-AppleOS"
 
@@ -64,6 +69,7 @@ fileprivate extension Target {
 
     static let coreTarget: Target = .target(name: .core,
                                             dependencies: [.kingFisherDependency,
+                                                           .lottieDependency,
                                                            .pixelDependency])
 }
 
@@ -73,8 +79,9 @@ fileprivate extension Target.Dependency {
     static let coreDependency: Target.Dependency = byName(name: .core)
 
     // MARK: Libraries
-
     static let kingFisherDependency: Target.Dependency = byName(name: .kingFisher)
+    static let lottieDependency: Target.Dependency = product(name: .lottie,
+                                                             package: .lottieSpm)
     static let pixelDependency: Target.Dependency = product(name: .pixel,
                                                             package: .pixelAppleOS)
 }

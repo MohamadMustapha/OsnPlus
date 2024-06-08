@@ -6,6 +6,7 @@
 //
 
 import Kingfisher
+import OSNCore
 import Pixel
 import SwiftUI
 
@@ -26,7 +27,7 @@ struct HeaderView: View {
 
                 KFImage(.init(string: item.imageUrl))
                     .placeholder {
-                        ProgressView()
+                        OsnLoader()
                     }
                     .resizable()
                     .scaledToFill()
