@@ -30,7 +30,11 @@ public struct HomeView: View {
                         PixelColor.dark8
                             .ignoresSafeArea())
             case .error:
-                EmptyView()
+                ErrorView {
+                    Task {
+                        await viewModel.onAppear()
+                    }
+                }
             }
         }
         .blur(radius: isPresented ? 10 : 0)
