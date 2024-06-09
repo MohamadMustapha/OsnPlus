@@ -17,6 +17,6 @@ public struct Movie: Identifiable, Codable {
 
     public let id: Int
 
-    public let posterPath: String
-    public let title: String
+    public let posterPath: String?
+    public let title: String?
 }

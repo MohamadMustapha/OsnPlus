@@ -20,12 +20,11 @@ public struct SearchView: View {
     public var body: some View {
         VStack(spacing: .p5) {
             SearchBarView(searchText: $viewModel.searchText)
-//                .onChange(of: viewModel.searchText) { newValue in
-//                    print(newValue)
-//                    Task {
-//                        if searching {await viewModel.search()}
-//                    }
-//                }
+                .onChange(of: viewModel.searchText) {
+                    Task {
+                        if searching {await viewModel.search()}
+                    }
+                }
             Group {
                 switch viewModel.state {
                 case .loading:
@@ -45,8 +44,12 @@ public struct SearchView: View {
         ScrollView {
             VStack(alignment: .leading, spacing: .p5) {
                     // TODO: animation bug
-                PixelText(configuration: .title, text: searching ? "Search results" : "Trending Movies & Series")
-                ItemsGridView(items: searching ? model.searchItems : model.trendingItems)
+                if searching && model.searchItems.isEmpty {
+                    PixelText(configuration: .unavailable, text: "No results found.")
+                } else {
+                    PixelText(configuration: .title, text: searching ? "Search results" : "Trending Movies & Series")
+                    ItemsGridView(items: searching ? model.searchItems : model.trendingItems)
+                }
             }
             .padding(.p10)
         }
@@ -65,6 +68,13 @@ fileprivate extension PixelTextConfiguration {
         .init(alignment: .center,
               colorStyle: .single(color: PixelColor.light1),
               fontStyle: .single(font: .big2),
+              lineLimit: 1)
+    }
+
+    static var unavailable: PixelTextConfiguration {
+        .init(alignment: .center,
+              colorStyle: .single(color: PixelColor.light8),
+              fontStyle: .single(font: .medium2),
               lineLimit: 1)
     }
 }

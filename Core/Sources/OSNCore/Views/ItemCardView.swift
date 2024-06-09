@@ -20,7 +20,7 @@ public struct ItemCardView: View {
     public var body: some View {
         KFImage(.init(string: item.imageUrl))
             .placeholder {
-                PixelText(configuration: .title, text: item.title)
+                PixelText(configuration: .caption, text: item.title)
             }
             .fade(duration: 0.5)
             .forceTransition(true)
@@ -32,7 +32,8 @@ public struct ItemCardView: View {
 }
 
 fileprivate extension PixelTextConfiguration {
-    static var title: PixelTextConfiguration {
+
+    static var caption: PixelTextConfiguration {
         .init(alignment: .center,
               colorStyle: .single(color: PixelColor.light8),
               fontStyle: .single(font: .medium3),
