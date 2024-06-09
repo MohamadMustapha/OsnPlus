@@ -71,8 +71,8 @@ struct MoviesServiceImplementation: MoviesService {
 
     private func parse(from response: MovieResponse) throws -> [ItemModel] {
         return try response.results.map { .init(id: $0.id,
-                                            imageUrl: try api.generateImageUrl(from: $0.posterPath),
-                                            title: $0.title)
+                                            imageUrl: try api.generateImageUrl(from: $0.posterPath ?? ""),
+                                            title: $0.title ?? "")
         }
     }
 }

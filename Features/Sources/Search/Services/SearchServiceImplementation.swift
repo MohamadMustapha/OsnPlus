@@ -27,23 +27,26 @@ struct SearchServiceImplementation: SearchService {
     }
     
     func searchQuery(query: String) async throws -> [ItemModel] {
-        async let series: [ItemModel] = parseMovies(from: moviesApi.searchMovies(pages: 1, query: query))
-        async let movies: [ItemModel] = parseSeries(from: seriesApi.searchSeries(pages: 1, query: query))
+        async let movies: [ItemModel] = parseMovies(from: moviesApi.searchMovies(pages: 1, query: query))
+        async let series: [ItemModel] = parseSeries(from: seriesApi.searchSeries(pages: 1, query: query))
 
-        return (try await series + movies).shuffled()
+        let moviesResult = try await movies
+        let seriesResult = try await series
+
+        return moviesResult + seriesResult
     }
 
     private func parseSeries(from response: SeriesResponse) throws -> [ItemModel] {
         return try response.results.map { .init(id: $0.id,
-                                            imageUrl: try seriesApi.generateImageUrl(from: $0.posterPath),
-                                            title: $0.name)
+                                            imageUrl: try seriesApi.generateImageUrl(from: $0.posterPath ?? ""),
+                                            title: $0.name ?? "")
         }
     }
 
     private func parseMovies(from response: MovieResponse) throws -> [ItemModel] {
         return try response.results.map { .init(id: $0.id,
-                                            imageUrl: try moviesApi.generateImageUrl(from: $0.posterPath),
-                                            title: $0.title)
+                                            imageUrl: try moviesApi.generateImageUrl(from: $0.posterPath ?? ""),
+                                            title: $0.title ?? "")
         }
     }
 }

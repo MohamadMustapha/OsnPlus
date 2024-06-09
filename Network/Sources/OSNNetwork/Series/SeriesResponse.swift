@@ -17,6 +17,6 @@ public struct Series: Identifiable, Codable {
 
     public let id: Int
 
-    public let posterPath: String
-    public let name: String
+    public let posterPath: String?
+    public let name: String?
 }

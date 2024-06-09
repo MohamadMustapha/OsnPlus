@@ -54,19 +54,19 @@ final class SearchViewModel {
         }
     }
 
-//    func search() async {
-//        do {
-//            state = .loading
-//            let searchItems: [ItemModel] = try await service.searchQuery(query: searchText)
-//
-//            let model: UIState.SearchModel = .init(trendingItems: trendingItems, searchItems: searchItems)
-//
-//            withAnimation {
-//                state = .loaded(model: model)
-//            }
-//        } catch {
-//            print(error)
-//            state = .error
-//        }
-//    }
+    // TODO: possible rework of searching using Combine, debouncing...
+    func search() async {
+        do {
+            let searchItems: [ItemModel] = try await service.searchQuery(query: searchText)
+
+            let model: UIState.SearchModel = .init(trendingItems: trendingItems, searchItems: searchItems)
+
+            withAnimation {
+                state = .loaded(model: model)
+            }
+        } catch {
+            print(error)
+            state = .error
+        }
+    }
 }
