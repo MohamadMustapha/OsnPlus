@@ -33,7 +33,11 @@ public struct SearchView: View {
                     loadedView(model: model)
                         .scrollDismissesKeyboard(.immediately)
                 case .error:
-                    ProgressView()
+                    ErrorView {
+                        Task {
+                            searching ? await viewModel.search() : await viewModel.getTrending()
+                        }
+                    }
                 }
             }
             .frame(maxWidth: .infinity, maxHeight: .infinity, alignment: .center)

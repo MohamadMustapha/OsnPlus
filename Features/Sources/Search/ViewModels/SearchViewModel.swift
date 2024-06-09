@@ -37,7 +37,7 @@ final class SearchViewModel {
         }
     }
 
-     private func getTrending() async {
+    func getTrending() async {
         do {
             trendingItems = try await service.getAllTrending()
 
