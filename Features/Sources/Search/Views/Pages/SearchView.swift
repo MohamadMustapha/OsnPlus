@@ -31,6 +31,7 @@ public struct SearchView: View {
                     OsnLoader()
                 case .loaded(let model):
                     loadedView(model: model)
+                        .scrollDismissesKeyboard(.immediately)
                 case .error:
                     ProgressView()
                 }
