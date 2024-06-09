@@ -54,6 +54,7 @@ final class SearchViewModel {
         }
     }
 
+    // TODO: possible rework of searching using Combine, debouncing...
     func search() async {
         do {
             let searchItems: [ItemModel] = try await service.searchQuery(query: searchText)

@@ -27,10 +27,13 @@ struct SearchServiceImplementation: SearchService {
     }
     
     func searchQuery(query: String) async throws -> [ItemModel] {
-        async let series: [ItemModel] = parseMovies(from: moviesApi.searchMovies(pages: 1, query: query))
-        async let movies: [ItemModel] = parseSeries(from: seriesApi.searchSeries(pages: 1, query: query))
+        async let movies: [ItemModel] = parseMovies(from: moviesApi.searchMovies(pages: 1, query: query))
+        async let series: [ItemModel] = parseSeries(from: seriesApi.searchSeries(pages: 1, query: query))
 
-        return try await movies + series
+        let moviesResult = try await movies
+        let seriesResult = try await series
+
+        return moviesResult + seriesResult
     }
 
     private func parseSeries(from response: SeriesResponse) throws -> [ItemModel] {
