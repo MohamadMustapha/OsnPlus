@@ -37,7 +37,7 @@ public struct HomeView: View {
                 }
             }
         }
-        .blur(radius: isPresented ? 10 : 0)
+        .blur(radius: isPresented ? 15 : 0)
         .onFirstAppear {
             await viewModel.onAppear()
         }
