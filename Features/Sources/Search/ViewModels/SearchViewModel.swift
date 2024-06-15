@@ -5,6 +5,7 @@
 //  Created by Mohamad Mustapha on 05/06/2024.
 //
 
+import Combine
 import Observation
 import OSNCore
 import OSNNetwork
@@ -28,6 +29,8 @@ final class SearchViewModel {
 
     private(set) var state: UIState = .loading
     private(set) var trendingItems: [ItemModel] = []
+//    private(set) var cancellables: Set<AnyCancellable> = .init()
+//    private(set) var searchPublisher: PassthroughSubject<String, Never> = .init()
 
     var searchText: String = ""
 
@@ -54,9 +57,11 @@ final class SearchViewModel {
         }
     }
 
-    // TODO: possible rework of searching using Combine, debouncing...
     func search() async {
         do {
+            withAnimation {
+                state = .loading
+            }
             let searchItems: [ItemModel] = try await service.searchQuery(query: searchText)
 
             let model: UIState.SearchModel = .init(trendingItems: trendingItems, searchItems: searchItems)
@@ -69,4 +74,26 @@ final class SearchViewModel {
             state = .error
         }
     }
+
+//    private func searchPipeline() {
+//        searchPublisher
+//            .removeDuplicates()
+//            .debounce(for: 0.5, scheduler: DispatchQueue.main)
+//            .receive(on: DispatchQueue.main)
+//            .sink { completion in
+//                switch completion {
+//                case .finished:
+//                    print("finished")
+//                case .failure(let failure):
+//                    print(failure.localizedDescription)
+//                    self.state = .error
+//                }
+//
+//            } receiveValue: { [weak self] _ in
+//                Task {
+//                    await self?.search() // how to run the search function in this block
+//                }
+//            }
+//            .store(in: &cancellables)
+//    }
 }

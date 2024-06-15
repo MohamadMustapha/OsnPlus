@@ -83,6 +83,7 @@ fileprivate extension PixelTextConfiguration {
               lineLimit: 1)
     }
 }
+
 #Preview {
     SearchView()
 }
