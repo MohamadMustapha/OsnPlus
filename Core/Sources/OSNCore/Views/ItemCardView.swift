@@ -11,6 +11,8 @@ import SwiftUI
 
 public struct ItemCardView: View {
 
+    @State var isPresented: Bool = false
+
     let item: ItemModel
 
     public init(item: ItemModel) {
@@ -18,16 +20,28 @@ public struct ItemCardView: View {
     }
 
     public var body: some View {
-        KFImage(.init(string: item.imageUrl))
-            .placeholder {
-                PixelText(configuration: .caption, text: item.title)
-            }
-            .fade(duration: 0.5)
-            .forceTransition(true)
-            .resizable()
-            .aspectRatio(27/40, contentMode: .fit)
-            .background(PixelColor.dark6)
-            .clipShape(RoundedRectangle(cornerRadius: .p2))
+        Button {
+            isPresented.toggle()
+        } label: {
+            KFImage(.init(string: item.imageUrl))
+                .placeholder {
+                    PixelText(configuration: .caption, text: item.title)
+                }
+                .fade(duration: 0.5)
+                .forceTransition(true)
+                .resizable()
+                .aspectRatio(27/40, contentMode: .fit)
+                .background(PixelColor.dark6)
+                .clipShape(RoundedRectangle(cornerRadius: .p2))
+        }
+        .buttonStyle(DecreaseSizeButtonStyle())
+        .sheet(isPresented: $isPresented) {
+            Text(item.title)
+                .presentationDetents([.fraction(0.99)])
+                .presentationDragIndicator(.hidden)
+                .presentationBackgroundInteraction(.disabled)
+                .presentationBackground(PixelColor.dark7)
+        }
     }
 }
 

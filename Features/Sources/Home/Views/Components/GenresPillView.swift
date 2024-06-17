@@ -56,7 +56,7 @@ struct GenresPillView: View {
             .buttonStyle(PixelSizeButtonStyle())
             .fullScreenCover(isPresented: $isPresented) {
                 GenresSheetView(isPresented: $isPresented, items: Self.genres)
-                    .presentationBackground(PixelColor.dark8.opacity(0.9))
+                    .presentationBackground(PixelColor.dark6.opacity(0.9))
             }
 
             Spacer()

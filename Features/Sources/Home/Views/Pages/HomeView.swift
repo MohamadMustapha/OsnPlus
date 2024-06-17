@@ -45,7 +45,6 @@ public struct HomeView: View {
 
     @ViewBuilder
     func loadedView(model: Model) -> some View {
-
         GeometryReader {
             let safeArea = $0.safeAreaInsets
             let size = $0.size
