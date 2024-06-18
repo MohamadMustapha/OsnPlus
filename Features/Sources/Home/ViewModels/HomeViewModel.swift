@@ -24,17 +24,23 @@ final class HomeViewModel {
         struct HomeModel {
             let headerItem: HeaderModel
             let sections: [ItemsCarouselModel]
-
         }
         case loading, loaded(model: HomeModel), error
     }
 
     @ObservationIgnored private let service: HomeServiceImplementation = .init(moviesService: MoviesServiceImplementation(api: HttpMoviesApi()),
                                                                                seriesService: SeriesServiceImplementation(api: HttpSeriesApi()))
-
     private(set) var state: UIState = .loading
-    // TODO: fix bug of category not updating on binding change
-    var category: Category = .movies
+    private var movieSections: [ItemsCarouselModel]?
+    private var seriesSections: [ItemsCarouselModel]?
+
+    var category: Category = .movies {
+        didSet {
+            Task {
+                await onAppear()
+            }
+        }
+    }
 
     init() { }
 
@@ -53,16 +59,25 @@ final class HomeViewModel {
     }
 
     private func loadData(for category: Category) async throws -> UIState.HomeModel {
-        let tasks: [Section] = {
-            switch category {
-            case .movies:
-                return MovieSections.allCases
-            case .series:
-                return SeriesSection.allCases
-            }
-        }()
+        let sections: [ItemsCarouselModel]
 
-        let sections: [ItemsCarouselModel] = try await getSections(from: tasks)
+        switch category {
+        case .movies:
+            if let cachedSections = movieSections {
+                sections = cachedSections
+            } else {
+                sections = try await getSections(from: MovieSections.allCases)
+                movieSections = sections
+            }
+        case .series:
+            if let cachedSections = seriesSections {
+                sections = cachedSections
+            } else {
+                sections = try await getSections(from: SeriesSection.allCases)
+                seriesSections = sections
+            }
+        }
+
         let header: HeaderModel = .init(id: 1,
                                             imageUrl: "https://image.tmdb.org/t/p/w500//d5NXSklXo0qyIYkgV94XAgMIckC.jpg",
                                             genres: ["Comedy", "Thriller"])

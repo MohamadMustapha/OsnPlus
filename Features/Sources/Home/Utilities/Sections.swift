@@ -33,7 +33,8 @@ enum MovieSections: String, CaseIterable, Section {
         switch self {
         case .topMovies:
                 .charts
-        default: .plain
+        default: 
+                .plain
         }
     }
 
