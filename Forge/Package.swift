@@ -6,9 +6,7 @@ import PackageDescription
 let package = Package(
     name: .package,
     platforms: [.iOS],
-    products: [
-        .forgeProduct
-    ],
+    products: [.forgeProduct],
     targets: [
         .forgeTarget,
         .forgeTestTarget

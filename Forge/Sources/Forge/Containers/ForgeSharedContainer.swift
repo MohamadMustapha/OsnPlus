@@ -8,7 +8,7 @@
 
 import Foundation
 
-public protocol ForgeSharedContainer: ForgeManagedContainer, Sendable {
+public protocol ForgeSharedContainer: ForgeManagedContainer {
 
     static var shared: Self { get }
 }

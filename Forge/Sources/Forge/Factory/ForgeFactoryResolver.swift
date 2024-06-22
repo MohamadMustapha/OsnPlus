@@ -15,9 +15,9 @@ public struct ForgeFactoryResolver<Parameter, Dependency> {
     
     let factory: (Parameter) -> Dependency
     
-    init(container: ForgeManagedContainer, key: StaticString, factory: @escaping (Parameter) -> Dependency) {
+    init(container: ForgeManagedContainer, id: StaticString, factory: @escaping (Parameter) -> Dependency) {
         self.container = container
-        self.key = .init(key: key, type: Dependency.self)
+        self.key = .init(id: id, type: Dependency.self)
         self.factory = factory
     }
 }
