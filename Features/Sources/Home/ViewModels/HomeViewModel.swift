@@ -32,7 +32,9 @@ final class HomeViewModel {
                                                                                seriesService: SeriesServiceImplementation(api: HttpSeriesApi()))
     private(set) var state: UIState = .loading
     private var movieSections: [ItemsCarouselModel]?
+    private var movieHeader: HeaderModel?
     private var seriesSections: [ItemsCarouselModel]?
+    private var seriesHeader: HeaderModel?
 
     var category: Category = .movies {
         didSet {
@@ -73,7 +75,7 @@ final class HomeViewModel {
             if let cachedSections = seriesSections {
                 sections = cachedSections
             } else {
-                sections = try await getSections(from: SeriesSection.allCases)
+                sections = try await getSections(from: SeriesSections.allCases)
                 seriesSections = sections
             }
         }

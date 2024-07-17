@@ -59,7 +59,8 @@ fileprivate extension PixelTextConfiguration {
     HStack(spacing: .p5) {
         ItemCardView(item: .init(id: 1,
                                  imageUrl: "https://image.tmdb.org/t/p/w500//d5NXSklXo0qyIYkgV94XAgMIckC.jpg",
-                                 title: "Dune"))
+                                 title: "Dune",
+                                 popularity: 0))
     }
     .padding()
 

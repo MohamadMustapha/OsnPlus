@@ -13,16 +13,18 @@ public struct ItemModel: Identifiable {
 
     public let imageUrl: String
     public let title: String
+    public let popularity: Double
 
-
-    public init(id: Int, imageUrl: String, title: String) {
+    public init(id: Int, imageUrl: String, title: String, popularity: Double) {
         self.id = id
         self.imageUrl = imageUrl
         self.title = title
+        self.popularity = popularity
     }
 
     public static let mock: Self = .init(id: 1,
                                          imageUrl: "https://image.tmdb.org/t/p/w500//d5NXSklXo0qyIYkgV94XAgMIckC.jpg",
-                                         title: "Dune"
+                                         title: "Dune",
+                                         popularity: 10
     )
 }

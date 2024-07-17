@@ -1,24 +1,12 @@
 //
-//  Sections.swift
+//  MovieSections.swift
 //
 //
-//  Created by Mohamad Mustapha on 25/05/2024.
+//  Created by Mohamad Mustapha on 19/06/2024.
 //
 
-import OSNCore
 import Foundation
-
-protocol Section {
-
-    var rawValue: String { get }
-    var type: ItemsCarouselModel.CarouselType { get }
-    func fetch(using service: HomeServiceImplementation) async throws -> [ItemModel]
-}
-
-enum Category: String {
-    case movies = "Movies"
-    case series = "Series"
-}
+import OSNCore
 
 enum MovieSections: String, CaseIterable, Section {
 
@@ -33,7 +21,7 @@ enum MovieSections: String, CaseIterable, Section {
         switch self {
         case .topMovies:
                 .charts
-        default: 
+        default:
                 .plain
         }
     }
@@ -52,27 +40,6 @@ enum MovieSections: String, CaseIterable, Section {
             return try await service.moviesService.getJustAdded()
         case .topMovies:
             return try await service.moviesService.getTopMovies()
-        }
-    }
-}
-
-enum SeriesSection: String, CaseIterable, Section {
-
-    case trending = "Trending On OSN+"
-    case boxSets = "Boxsets To Binge On"
-
-    var type: ItemsCarouselModel.CarouselType {
-        switch self {
-        default: .plain
-        }
-    }
-
-    func fetch(using service: HomeServiceImplementation) async throws -> [ItemModel] {
-        switch self {
-        case .trending:
-            return try await service.seriesService.getTrending()
-        case .boxSets:
-            return try await service.seriesService.getTopHits()
         }
     }
 }

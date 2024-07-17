@@ -56,7 +56,8 @@ struct SeriesServiceImplementation: SeriesService {
     private func parse(from response: SeriesResponse) throws -> [ItemModel] {
         return try response.results.map { .init(id: $0.id,
                                             imageUrl: try api.generateImageUrl(from: $0.posterPath ?? ""),
-                                            title: $0.name ?? "")
+                                            title: $0.name ?? "",
+                                                popularity: $0.popularity ?? 0)
         }
     }
 }

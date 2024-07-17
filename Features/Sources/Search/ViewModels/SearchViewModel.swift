@@ -30,7 +30,6 @@ final class SearchViewModel {
     private(set) var state: UIState = .loading
     private(set) var trendingItems: [ItemModel] = []
 //    private(set) var cancellables: Set<AnyCancellable> = .init()
-//    private(set) var searchPublisher: PassthroughSubject<String, Never> = .init()
 
     var searchText: String = ""
 
@@ -59,10 +58,10 @@ final class SearchViewModel {
 
     func search() async {
         do {
-            withAnimation {
-                state = .loading
-            }
-            let searchItems: [ItemModel] = try await service.searchQuery(query: searchText)
+//            withAnimation {
+//                state = .loading
+//            }
+            let searchItems: [ItemModel] = try await service.getSearch(query: searchText)
 
             let model: UIState.SearchModel = .init(trendingItems: trendingItems, searchItems: searchItems)
 

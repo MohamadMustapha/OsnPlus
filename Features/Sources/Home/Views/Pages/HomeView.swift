@@ -37,6 +37,7 @@ public struct HomeView: View {
                 }
             }
         }
+        // TODO: fix tab bar not blurring cz of view hierarchy
         .blur(radius: isPresented ? 15 : 0)
         .onFirstAppear {
             await viewModel.onAppear()
