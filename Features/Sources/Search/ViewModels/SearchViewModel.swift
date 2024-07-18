@@ -33,11 +33,7 @@ final class SearchViewModel {
 
     var searchText: String = ""
 
-    init() {
-        Task {
-            await getTrending()
-        }
-    }
+    init() {}
 
     func getTrending() async {
         do {
@@ -56,11 +52,8 @@ final class SearchViewModel {
         }
     }
 
-    func search() async {
+    func search(for searchText: String) async {
         do {
-//            withAnimation {
-//                state = .loading
-//            }
             let searchItems: [ItemModel] = try await service.getSearch(query: searchText)
 
             let model: UIState.SearchModel = .init(trendingItems: trendingItems, searchItems: searchItems)
@@ -75,7 +68,8 @@ final class SearchViewModel {
     }
 
 //    private func searchPipeline() {
-//        searchPublisher
+//        searchText
+//            .publisher
 //            .removeDuplicates()
 //            .debounce(for: 0.5, scheduler: DispatchQueue.main)
 //            .receive(on: DispatchQueue.main)
@@ -88,9 +82,9 @@ final class SearchViewModel {
 //                    self.state = .error
 //                }
 //
-//            } receiveValue: { [weak self] _ in
+//            } receiveValue: { [self] _ in
 //                Task {
-//                    await self?.search() // how to run the search function in this block
+//                    await search(for: searchText) // how to run the search function in this block
 //                }
 //            }
 //            .store(in: &cancellables)

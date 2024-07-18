@@ -15,7 +15,7 @@ struct HeaderActionsView: View {
 
     var body: some View {
         VStack(spacing: .p7) {
-            PixelText(configuration: .genres, text: (item.genres.joined(separator: " · ")) )
+            PixelText(configuration: .genres, text: (item.genres.prefix(3).joined(separator: " · ")))
 
             HStack(alignment: .center, spacing: .p2) {
                 Button {

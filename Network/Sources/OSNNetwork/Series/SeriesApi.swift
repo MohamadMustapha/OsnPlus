@@ -14,5 +14,7 @@ public protocol SeriesApi: Api {
     // Top Rated
     func getTopHits(pages: Int) async throws -> SeriesResponse
 
+    func getSeriesHeader(by id: Int) async throws -> HeaderResponse
+
     func searchSeries(pages: Int, query: String) async throws -> SeriesResponse
 }

@@ -41,12 +41,16 @@ struct MoviesServiceImplementation: MoviesService {
         return try await fetch(using: api.getTopMovies)
     }
 
+    func getMovieHeader(by id: Int) async throws -> HeaderModel {
+        return try await parseHeader(from: api.getMovieHeader(by: id))
+    }
+
     private func fetch(upTo pages: Int = 1, using method: @escaping (_ pages: Int) async throws -> MovieResponse) async throws-> [ItemModel] {
         var items: [ItemModel] = []
         items.reserveCapacity(pages*20)
 
         if pages == 1 {
-            return try  parse(from: try await method(pages))
+            return try parse(from: try await method(pages))
         } else {
             items.append(contentsOf:
                             try await withThrowingTaskGroup(
@@ -71,9 +75,15 @@ struct MoviesServiceImplementation: MoviesService {
 
     private func parse(from response: MovieResponse) throws -> [ItemModel] {
         return try response.results.map { .init(id: $0.id,
-                                            imageUrl: try api.generateImageUrl(from: $0.posterPath ?? ""),
+                                                imageUrl: try api.generateImageUrl(from: $0.posterPath ?? ""),
                                                 title: $0.title ?? "",
                                                 popularity: $0.popularity ?? 0)
         }
+    }
+
+    private func parseHeader(from response: HeaderResponse) throws -> HeaderModel {
+        return try .init(id: response.id,
+                         imageUrl: api.generateImageUrl(from: response.posterPath),
+                         genres: response.genres.map {$0.name})
     }
 }

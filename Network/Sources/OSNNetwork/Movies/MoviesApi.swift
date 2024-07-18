@@ -22,7 +22,8 @@ public protocol MoviesApi: Api {
     // Popular but only first 10
     func getTopMovies(pages: Int) async throws ->  MovieResponse
 //    func getDetails(by id: Int) async throws ->
-    
+    func getMovieHeader(by id: Int) async throws -> HeaderResponse
+
     func searchMovies(pages: Int, query: String) async throws ->  MovieResponse
 
 }

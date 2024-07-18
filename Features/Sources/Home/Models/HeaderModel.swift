@@ -7,11 +7,10 @@
 
 import Foundation
 
-struct HeaderModel: Identifiable {
+public struct HeaderModel: Identifiable {
 
-    let id: Int
+    public let id: Int
 
-    let imageUrl: String
-    let genres: [String]
-
+    public let imageUrl: String
+    public let genres: [String]
 }

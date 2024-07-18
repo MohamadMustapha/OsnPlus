@@ -27,7 +27,7 @@ public enum ApiError: Error {
 public protocol Api {
 
     func fetch<T:Codable>(type: T.Type, with request: URLRequest) async throws -> T
-    func generateUrlRequest(from url: URL, pages: Int, query: String?) throws -> URLRequest
+    func generateUrlRequest(from url: URL, pages: Int?, parameters: [URLQueryItem]?) throws -> URLRequest
     func generateUrl(route: String, endpoint: String) throws -> URL
     func generateImageUrl(from path: String) throws -> String
 }
@@ -50,16 +50,16 @@ public extension Api {
     }
 
 
-    func generateUrlRequest(from url: URL, pages: Int, query: String? = nil) throws -> URLRequest {
+    func generateUrlRequest(from url: URL, pages: Int? = nil, parameters: [URLQueryItem]? = nil) throws -> URLRequest {
         guard var components: URLComponents = .init(url: url, resolvingAgainstBaseURL: true) else {throw ApiError.invalidUrl}
 
         components.queryItems = [
-          URLQueryItem(name: "language", value: "en-US"),
-          URLQueryItem(name: "page", value: pages.description )
+          URLQueryItem(name: "language", value: "en-US")
         ]
 
-        if let query = query {
-            components.queryItems?.append(.init(name: "query", value: query))
+        if let parameters = parameters, let pages = pages {
+            components.queryItems?.append(.init(name: "page", value: pages.description ))
+            components.queryItems?.append(contentsOf: parameters)
         }
 
         guard let url: URL = components.url else {throw ApiError.invalidUrl}

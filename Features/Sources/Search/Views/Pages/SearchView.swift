@@ -22,7 +22,7 @@ public struct SearchView: View {
             SearchBarView(searchText: $viewModel.searchText)
                 .onChange(of: viewModel.searchText) {
                     Task {
-                        if searching {await viewModel.search()}
+                        if searching {await viewModel.search(for: viewModel.searchText)}
                     }
                 }
             Group {
@@ -35,12 +35,15 @@ public struct SearchView: View {
                 case .error:
                     ErrorView {
                         Task {
-                            searching ? await viewModel.search() : await viewModel.getTrending()
+                            searching ? await viewModel.search(for: viewModel.searchText ) : await viewModel.getTrending()
                         }
                     }
                 }
             }
             .frame(maxWidth: .infinity, maxHeight: .infinity, alignment: .center)
+        }
+        .onFirstAppear {
+            await viewModel.getTrending()
         }
     }
 
@@ -63,7 +66,7 @@ public struct SearchView: View {
     }
 
     private var searching: Bool {
-        return viewModel.searchText.count > 1
+        return viewModel.searchText.count > 0
     }
 }
 
