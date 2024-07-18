@@ -19,7 +19,7 @@ struct ItemsCarouselView: View {
                 .padding(.horizontal, .p10)
 
             ScrollView(.horizontal, showsIndicators: false) {
-                HStack(alignment: .top, spacing: isCharts ? .p12 : .p3) {
+                LazyHGrid(rows: [GridItem(.flexible(), alignment: .top)], spacing: isCharts ? .p12 : .p3) {
                     ForEach(Array(carousel.items.enumerated()), id: \.element.id) { index, item in
                         ZStack(alignment: .bottomLeading) {
                             ItemCardView(item: item)
@@ -35,7 +35,7 @@ struct ItemsCarouselView: View {
                     .containerRelativeFrame(.horizontal,
                                             count: isCharts ? 11 : 10,
                                             span: isCharts ? 4 : 3,
-                                            spacing: .p0 )
+                                            spacing: .p0)
                 }
             }
             .scrollBounceBehavior(.basedOnSize, axes: .horizontal)

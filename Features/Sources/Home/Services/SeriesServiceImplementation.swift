@@ -25,6 +25,10 @@ struct SeriesServiceImplementation: SeriesService {
         return try await fetch(upTo: 2, using: api.getTopHits)
     }
 
+    func getSeriesHeader(by id: Int) async throws -> HeaderModel {
+        return try await parseHeader(from: api.getSeriesHeader(by: id))
+    }
+
     private func fetch(upTo pages: Int = 1, using method: @escaping (_ pages: Int) async throws -> SeriesResponse) async throws-> [ItemModel] {
         var items: [ItemModel] = []
         items.reserveCapacity(pages*20)
@@ -56,7 +60,14 @@ struct SeriesServiceImplementation: SeriesService {
     private func parse(from response: SeriesResponse) throws -> [ItemModel] {
         return try response.results.map { .init(id: $0.id,
                                             imageUrl: try api.generateImageUrl(from: $0.posterPath ?? ""),
-                                            title: $0.name ?? "")
+                                            title: $0.name ?? "",
+                                                popularity: $0.popularity ?? 0)
         }
+    }
+
+    private func parseHeader(from response: HeaderResponse) throws -> HeaderModel {
+        return try .init(id: response.id,
+                         imageUrl: api.generateImageUrl(from: response.posterPath),
+                         genres: response.genres.map {$0.name})
     }
 }

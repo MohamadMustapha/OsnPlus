@@ -19,4 +19,5 @@ public struct Series: Identifiable, Codable {
 
     public let posterPath: String?
     public let name: String?
+    public let popularity: Double?
 }

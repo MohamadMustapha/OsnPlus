@@ -19,4 +19,5 @@ public struct Movie: Identifiable, Codable {
 
     public let posterPath: String?
     public let title: String?
+    public let popularity: Double?
 }

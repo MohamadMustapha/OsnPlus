@@ -25,4 +25,6 @@ public protocol MoviesService {
     func getJustAdded() async throws -> [ItemModel]
     // Popular
     func getTopMovies() async throws -> [ItemModel]
+    // Header
+    func getMovieHeader(by id: Int) async throws -> HeaderModel
 }

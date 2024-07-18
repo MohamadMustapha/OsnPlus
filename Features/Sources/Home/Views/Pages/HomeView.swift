@@ -37,7 +37,8 @@ public struct HomeView: View {
                 }
             }
         }
-        .blur(radius: isPresented ? 10 : 0)
+        // TODO: fix tab bar not blurring cz of view hierarchy
+        .blur(radius: isPresented ? 15 : 0)
         .onFirstAppear {
             await viewModel.onAppear()
         }
@@ -45,7 +46,6 @@ public struct HomeView: View {
 
     @ViewBuilder
     func loadedView(model: Model) -> some View {
-
         GeometryReader {
             let safeArea = $0.safeAreaInsets
             let size = $0.size

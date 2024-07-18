@@ -17,4 +17,6 @@ public protocol SeriesService {
     func getTrending() async throws -> [ItemModel]
     // Top Rated
     func getTopHits() async throws -> [ItemModel]
+    // Header
+    func getSeriesHeader(by id: Int) async throws -> HeaderModel
 }

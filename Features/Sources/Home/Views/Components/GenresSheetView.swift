@@ -20,7 +20,8 @@ struct GenresSheetView: View {
             ScrollView(.vertical, showsIndicators: false) {
                 ZStack {
                     // no idea how this line works but it fixed the centering for me
-                    Spacer().containerRelativeFrame([.horizontal, .vertical])
+                    Spacer()
+                        .containerRelativeFrame([.horizontal, .vertical])
                     VStack(spacing: .p20) {
                         ForEach(items, id: \.self) { item in
                             Button {
@@ -33,10 +34,9 @@ struct GenresSheetView: View {
                             .buttonStyle(DecreaseSizeButtonStyle())
                         }
                     }
-                    .padding(.top, .p23)
                 }
-                
             }
+            .safeAreaPadding(.vertical,  75)
             .scrollBounceBehavior(.basedOnSize)
             .fadeOutScrollView(fadeLength: 75)
             

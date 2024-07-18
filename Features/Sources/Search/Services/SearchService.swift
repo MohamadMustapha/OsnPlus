@@ -12,5 +12,5 @@ protocol SearchService {
 
     func getAllTrending() async throws -> [ItemModel]
 
-    func searchQuery(query: String) async throws -> [ItemModel]
+    func getSearch(query: String) async throws -> [ItemModel]
 }
