@@ -11,6 +11,7 @@ public struct HttpMoviesApi: MoviesApi {
 
     public init() { }
 
+    // MARK: Home
     public func getMustWatch(pages: Int) async throws ->  MovieResponse {
         return try await fetch(type: MovieResponse.self, with: generateUrlRequest(from: generateUrl(route: "movie", endpoint: "popular"),
                                                                                   pages: pages))
@@ -51,10 +52,14 @@ public struct HttpMoviesApi: MoviesApi {
                                                                                                      endpoint: id.description)))
     }
 
+    // MARK: Search
     public func searchMovies(pages: Int = 1, query: String) async throws ->  MovieResponse {
         return try await fetch(type: MovieResponse.self, with: generateUrlRequest(from: generateUrl(route: "search",
                                                                                                     endpoint: "movie"),
                                                                                   pages: pages,
                                                                                   parameters: [.init(name: "query", value: query)]))
     }
+
+    //MARK: Details
+
 }

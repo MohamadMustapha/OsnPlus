@@ -11,6 +11,7 @@ public struct HttpSeriesApi: SeriesApi {
 
     public init() { }
 
+    // MARK: Home
     public func getTrending(pages: Int) async throws -> SeriesResponse {
         return try await fetch(type: SeriesResponse.self, with: generateUrlRequest(from: generateUrl(route: "trending",
                                                                                                      endpoint: "tv/week"),
@@ -28,6 +29,7 @@ public struct HttpSeriesApi: SeriesApi {
                                                                                                      endpoint: id.description)))
     }
 
+    // MARK: Search
     public func searchSeries(pages: Int, query: String) async throws -> SeriesResponse {
         return try await fetch(type: SeriesResponse.self, with: generateUrlRequest(from: generateUrl(route: "search",
                                                                                                      endpoint: "tv"),
