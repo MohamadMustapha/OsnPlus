@@ -57,9 +57,11 @@ public extension Api {
           URLQueryItem(name: "language", value: "en-US")
         ]
 
-        if let parameters = parameters, let pages = pages {
-            components.queryItems?.append(.init(name: "page", value: pages.description ))
+        if let parameters = parameters {
             components.queryItems?.append(contentsOf: parameters)
+        }
+        if let pages = pages {
+            components.queryItems?.append(.init(name: "page", value: pages.description ))
         }
 
         guard let url: URL = components.url else {throw ApiError.invalidUrl}
