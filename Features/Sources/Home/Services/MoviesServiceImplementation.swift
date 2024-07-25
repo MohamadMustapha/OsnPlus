@@ -40,6 +40,10 @@ struct MoviesServiceImplementation: MoviesService {
     func getTopMovies() async throws -> [ItemModel] {
         return try await fetch(using: api.getTopMovies)
     }
+    
+    func getTopGrossing() async throws -> [ItemModel] {
+        return try await fetch(using: api.getTopGrossing)
+    }
 
     func getMovieHeader(by id: Int) async throws -> HeaderModel {
         return try await parseHeader(from: api.getMovieHeader(by: id))
