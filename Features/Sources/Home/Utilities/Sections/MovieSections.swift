@@ -16,6 +16,8 @@ enum MovieSections: String, CaseIterable, Section {
     case blockBuster = "Blockbuster Movies"
     case justAdded = "Just Added"
     case topMovies = "Top 10 Movies In Lebanon"
+    case topGrossing = "Top Grossing of All Time"
+    case actionComedies = "Action Comedies"
 
     var type: ItemsCarouselModel.CarouselType {
         switch self {
@@ -40,6 +42,10 @@ enum MovieSections: String, CaseIterable, Section {
             return try await service.moviesService.getJustAdded()
         case .topMovies:
             return try await service.moviesService.getTopMovies()
+        case .topGrossing:
+            return try await service.moviesService.getTopGrossing()
+        case .actionComedies:
+            return try await service.moviesService.getActionComedies()
         }
     }
 }

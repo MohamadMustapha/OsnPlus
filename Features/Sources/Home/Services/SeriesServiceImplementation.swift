@@ -25,6 +25,15 @@ struct SeriesServiceImplementation: SeriesService {
         return try await fetch(upTo: 2, using: api.getTopHits)
     }
 
+    func getTopSeries() async throws -> [ItemModel] {
+        return try await fetch(using: api.getTopSeries)
+    }
+
+    func getJustAdded() async throws -> [ItemModel] {
+        return try await fetch(using: api.getJustAdded)
+    }
+
+
     func getSeriesHeader(by id: Int) async throws -> HeaderModel {
         return try await parseHeader(from: api.getSeriesHeader(by: id))
     }

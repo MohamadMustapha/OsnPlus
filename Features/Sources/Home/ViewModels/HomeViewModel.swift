@@ -100,7 +100,6 @@ final class HomeViewModel {
         }
     }
     
-    // TODO: fix bug of Sections returning in different order
     private func getSections(from tasks: [Section]) async throws -> [ItemsCarouselModel] {
         return try await withThrowingTaskGroup(of: ItemsCarouselModel.self,
                                                returning: [ItemsCarouselModel].self) { taskGroup in
