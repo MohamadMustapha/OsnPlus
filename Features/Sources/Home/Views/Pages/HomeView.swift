@@ -50,7 +50,7 @@ public struct HomeView: View {
             let safeArea = $0.safeAreaInsets
             let size = $0.size
             ScrollView(.vertical, showsIndicators: false) {
-                VStack(spacing: .p15) {
+                LazyVStack(spacing: .p15) {
                     HeaderView(size: size, safeArea: safeArea, item: model.headerItem)
 
                     ForEach(model.sections, id: \.id) { section in
