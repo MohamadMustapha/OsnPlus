@@ -42,7 +42,7 @@ public struct SearchView: View {
             }
             .frame(maxWidth: .infinity, maxHeight: .infinity, alignment: .center)
         }
-        .onFirstAppear {
+        .task {
             await viewModel.getTrending()
         }
     }
