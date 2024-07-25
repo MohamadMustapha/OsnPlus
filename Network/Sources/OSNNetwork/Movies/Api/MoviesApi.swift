@@ -23,6 +23,8 @@ public protocol MoviesApi: Api {
     func getTopMovies(pages: Int) async throws ->  MovieResponse
     // Top Grossing
     func getTopGrossing(pages: Int) async throws -> MovieResponse
+    // Action Comedies
+    func getActionComedies(pages: Int) async throws -> MovieResponse
 //    func getDetails(by id: Int) async throws ->
     func getMovieHeader(by id: Int) async throws -> HeaderResponse
 

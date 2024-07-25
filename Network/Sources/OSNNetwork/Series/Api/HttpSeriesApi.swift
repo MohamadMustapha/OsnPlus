@@ -35,8 +35,10 @@ public struct HttpSeriesApi: SeriesApi {
         return try await fetch(type: SeriesResponse.self, with: generateUrlRequest(from: generateUrl(route: "discover",
                                                                                                      endpoint: "tv"),
                                                                                    pages: pages,
-                                                                                   parameters: [.init(name: "with_origin_country", value: "US"),
-                                                                                                .init(name: "first_air_date_year", value: year)]))
+                                                                                   parameters: [.init(name: "with_origin_country",
+                                                                                                      value: "US"),
+                                                                                                .init(name: "first_air_date_year",
+                                                                                                      value: year)]))
     }
     
     public func getSeriesHeader(by id: Int) async throws -> HeaderResponse {

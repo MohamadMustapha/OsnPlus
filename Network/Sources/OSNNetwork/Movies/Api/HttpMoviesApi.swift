@@ -51,7 +51,18 @@ public struct HttpMoviesApi: MoviesApi {
         return try await fetch(type: MovieResponse.self, with: generateUrlRequest(from: generateUrl(route: "discover",
                                                                                                     endpoint: "movie"),
                                                                                   pages: pages,
-                                                                                  parameters: [.init(name: "sort_by", value: "revenue.desc")]))
+                                                                                  parameters: [.init(name: "sort_by",
+                                                                                                     value: "revenue.desc")]))
+    }
+    // MARK: Custom
+    public func getActionComedies(pages: Int) async throws -> MovieResponse {
+        return try await fetch(type: MovieResponse.self, with: generateUrlRequest(from: generateUrl(route: "discover",
+                                                                                                    endpoint: "movie"),
+                                                                                  pages: pages,
+                                                                                  parameters: [.init(name: "sort_by",
+                                                                                                     value: "revenue.desc"),
+                                                                                               .init(name: "with_genres",
+                                                                                                     value: "\(MovieGenre.action.rawValue),\(MovieGenre.comedy.rawValue)")]))
     }
 
     public func getMovieHeader(by id: Int) async throws -> HeaderResponse {
