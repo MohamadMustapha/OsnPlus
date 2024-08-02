@@ -19,7 +19,7 @@ struct ItemsCarouselView: View {
                 .padding(.horizontal, .p10)
 
             ScrollView(.horizontal, showsIndicators: false) {
-                HStack(spacing: isCharts ? .p12 : .p3) {
+                LazyHStack(spacing: isCharts ? .p12 : .p3) {
                     ForEach(Array(carousel.items.enumerated()), id: \.element.id) { index, item in
                         ZStack(alignment: .bottomLeading) {
                             ItemCardView(item: item)

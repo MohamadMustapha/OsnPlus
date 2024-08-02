@@ -93,8 +93,11 @@ final class HomeViewModel {
         if let loadedSections = sections, let loadedHeader = header {
             return (loadedSections, loadedHeader)
         } else {
+            // Load sections
             let sections: [ItemsCarouselModel] = try await getSections(from: sectionTypes)
+            // select random item from top 10
             let id: Int = sections.first(where: {$0.type == .charts})?.items.randomElement()?.id ?? defaultHeader
+            // load header info
             let header: HeaderModel = try await getHeader(of: category, by: id)
             return (sections, header)
         }
