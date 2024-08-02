@@ -28,7 +28,7 @@ final class SearchViewModel {
                                                                      seriesApi: HttpSeriesApi())
 
     private(set) var state: UIState = .loading
-    private(set) var trendingItems: [ItemModel] = []
+    private(set) var trendingItems: [ItemModel]?
 //    private(set) var cancellables: Set<AnyCancellable> = .init()
 
     var searchText: String = ""
@@ -41,9 +41,15 @@ final class SearchViewModel {
 
     func getTrending() async {
         do {
-            trendingItems = try await service.getAllTrending()
+            var model: UIState.SearchModel
 
-            let model: UIState.SearchModel = .init(trendingItems: trendingItems, searchItems: [])
+            if let items = trendingItems {
+                model = .init(trendingItems: items, searchItems: [])
+            } else {
+                let items = try await service.getAllTrending()
+                trendingItems = items
+                model = .init(trendingItems: items , searchItems: [])
+            }
 
             withAnimation {
                 state = .loaded(model: model)
@@ -60,7 +66,7 @@ final class SearchViewModel {
         do {
             let searchItems: [ItemModel] = try await service.getSearch(query: searchText)
 
-            let model: UIState.SearchModel = .init(trendingItems: trendingItems, searchItems: searchItems)
+            let model: UIState.SearchModel = .init(trendingItems: trendingItems ?? [], searchItems: searchItems)
 
             withAnimation {
                 state = .loaded(model: model)
