@@ -35,6 +35,10 @@ final class SearchViewModel {
 
     init() {}
 
+    func refresh() async {
+        !searchText.isEmpty ? await search(for: searchText) : await getTrending()
+    }
+
     func getTrending() async {
         do {
             trendingItems = try await service.getAllTrending()

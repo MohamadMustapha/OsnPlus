@@ -42,6 +42,7 @@ final class HomeViewModel {
                 await onAppear()
             }
         }
+
     }
 
     init() { }
@@ -58,6 +59,10 @@ final class HomeViewModel {
                 state = .error
             }
         }
+    }
+
+    func refresh() async {
+        await onAppear()
     }
 
     private func loadData(for category: Category) async throws -> UIState.HomeModel {

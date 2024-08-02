@@ -23,6 +23,7 @@ struct ItemsCarouselView: View {
                     ForEach(Array(carousel.items.enumerated()), id: \.element.id) { index, item in
                         ZStack(alignment: .bottomLeading) {
                             ItemCardView(item: item)
+                                .id(item.id)
 
                             Text((index + 1).description)
                                 .fontWeight(.bold)

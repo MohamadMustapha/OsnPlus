@@ -32,7 +32,7 @@ public struct HomeView: View {
             case .error:
                 ErrorView {
                     Task {
-                        await viewModel.onAppear()
+                        await viewModel.refresh()
                     }
                 }
             }

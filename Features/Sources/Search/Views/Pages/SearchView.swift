@@ -35,7 +35,7 @@ public struct SearchView: View {
                 case .error:
                     ErrorView {
                         Task {
-                            searching ? await viewModel.search(for: viewModel.searchText ) : await viewModel.getTrending()
+                            await viewModel.refresh()
                         }
                     }
                 }
