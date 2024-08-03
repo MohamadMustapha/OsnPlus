@@ -21,9 +21,7 @@ public struct SearchView: View {
         VStack(spacing: .p5) {
             SearchBarView(searchText: $viewModel.searchText)
                 .onChange(of: viewModel.searchText) {
-                    Task {
-                        if searching {await viewModel.search(for: viewModel.searchText)}
-                    }
+                    if searching {viewModel.search(for: viewModel.searchText)}
                 }
             Group {
                 switch viewModel.state {
