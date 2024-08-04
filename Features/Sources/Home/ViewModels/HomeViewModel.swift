@@ -42,6 +42,7 @@ final class HomeViewModel {
                 await onAppear()
             }
         }
+
     }
 
     init() { }
@@ -58,6 +59,10 @@ final class HomeViewModel {
                 state = .error
             }
         }
+    }
+
+    func refresh() async {
+        await onAppear()
     }
 
     private func loadData(for category: Category) async throws -> UIState.HomeModel {
@@ -93,8 +98,11 @@ final class HomeViewModel {
         if let loadedSections = sections, let loadedHeader = header {
             return (loadedSections, loadedHeader)
         } else {
+            // Load sections
             let sections: [ItemsCarouselModel] = try await getSections(from: sectionTypes)
+            // select random item from top 10
             let id: Int = sections.first(where: {$0.type == .charts})?.items.randomElement()?.id ?? defaultHeader
+            // load header info
             let header: HeaderModel = try await getHeader(of: category, by: id)
             return (sections, header)
         }

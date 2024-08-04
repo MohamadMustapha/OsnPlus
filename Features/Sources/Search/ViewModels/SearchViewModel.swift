@@ -13,7 +13,7 @@ import SwiftUI
 
 @Observable
 final class SearchViewModel {
-    
+
     enum UIState {
 
         struct SearchModel {
@@ -23,23 +23,31 @@ final class SearchViewModel {
 
         case loading, loaded(model: SearchModel), error
     }
-    
-    private var service: SearchService = SearchServiceImplementation(moviesApi: HttpMoviesApi(),
-                                                                     seriesApi: HttpSeriesApi())
 
+    private var service: SearchService = SearchServiceImplementation(moviesApi: HttpMoviesApi(), seriesApi: HttpSeriesApi())
     private(set) var state: UIState = .loading
-    private(set) var trendingItems: [ItemModel] = []
-//    private(set) var cancellables: Set<AnyCancellable> = .init()
+    private(set) var trendingItems: [ItemModel]?
+    private var currentTask: Task<Void, Never>? = nil
 
     var searchText: String = ""
-
+    
     init() {}
+
+    func refresh() async {
+        !searchText.isEmpty ? search(for: searchText) : await getTrending()
+    }
 
     func getTrending() async {
         do {
-            trendingItems = try await service.getAllTrending()
+            var model: UIState.SearchModel
 
-            let model: UIState.SearchModel = .init(trendingItems: trendingItems, searchItems: [])
+            if let items = trendingItems {
+                model = .init(trendingItems: items, searchItems: [])
+            } else {
+                let items = try await service.getAllTrending()
+                trendingItems = items
+                model = .init(trendingItems: items , searchItems: [])
+            }
 
             withAnimation {
                 state = .loaded(model: model)
@@ -52,41 +60,34 @@ final class SearchViewModel {
         }
     }
 
-    func search(for searchText: String) async {
-        do {
-            let searchItems: [ItemModel] = try await service.getSearch(query: searchText)
+    func search(for searchText: String) {
+        currentTask?.cancel()
+        currentTask = Task {
+            do {
+                log("Started search for \(searchText)")
+                let searchItems: [ItemModel] = try await service.getSearch(query: searchText)
+                log("Ended search for \(searchText)")
+                let model: UIState.SearchModel = .init(trendingItems: trendingItems ?? [], searchItems: searchItems)
 
-            let model: UIState.SearchModel = .init(trendingItems: trendingItems, searchItems: searchItems)
-
-            withAnimation {
-                state = .loaded(model: model)
+                withAnimation {
+                    state = .loaded(model: model)
+                }
+            } catch {
+                if let _ = error as? CancellationError {
+                    log("Searching for \(searchText) cancelled")
+                } else if let urlError = error as? URLError, urlError.code == .cancelled {
+                    log("Searching for \(searchText) cancelled by URLError")
+                } else {
+                    log("Error searching for \(searchText): \(error.localizedDescription)")
+                    withAnimation {
+                        state = .error
+                    }
+                }
             }
-        } catch {
-            print(error)
-            state = .error
         }
     }
 
-//    private func searchPipeline() {
-//        searchText
-//            .publisher
-//            .removeDuplicates()
-//            .debounce(for: 0.5, scheduler: DispatchQueue.main)
-//            .receive(on: DispatchQueue.main)
-//            .sink { completion in
-//                switch completion {
-//                case .finished:
-//                    print("finished")
-//                case .failure(let failure):
-//                    print(failure.localizedDescription)
-//                    self.state = .error
-//                }
-//
-//            } receiveValue: { [self] _ in
-//                Task {
-//                    await search(for: searchText) // how to run the search function in this block
-//                }
-//            }
-//            .store(in: &cancellables)
-//    }
+    private func log(_ message: String) {
+        print("\(Date()): \(message)")
+    }
 }

@@ -32,14 +32,14 @@ public struct HomeView: View {
             case .error:
                 ErrorView {
                     Task {
-                        await viewModel.onAppear()
+                        await viewModel.refresh()
                     }
                 }
             }
         }
         // TODO: fix tab bar not blurring cz of view hierarchy
         .blur(radius: isPresented ? 15 : 0)
-        .onFirstAppear {
+        .task {
             await viewModel.onAppear()
         }
     }
@@ -50,7 +50,7 @@ public struct HomeView: View {
             let safeArea = $0.safeAreaInsets
             let size = $0.size
             ScrollView(.vertical, showsIndicators: false) {
-                VStack(spacing: .p15) {
+                LazyVStack(spacing: .p15) {
                     HeaderView(size: size, safeArea: safeArea, item: model.headerItem)
 
                     ForEach(model.sections, id: \.id) { section in
