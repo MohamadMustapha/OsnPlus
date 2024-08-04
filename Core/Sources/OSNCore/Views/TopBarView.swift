@@ -10,24 +10,24 @@ import SwiftUI
 
 public struct TopBarView: View {
 
-    let name: String
+    let model: TopBarModel
 
-    public init(name: String) {
-        self.name = name
+    public init(model: TopBarModel) {
+        self.model = model
     }
 
     public var body: some View {
-        HStack(spacing: .p5) {
+        HStack(alignment: .center, spacing: .p5) {
             Image("osn-logo", bundle: .module)
                 .resizable()
                 .scaledToFit()
                 .frame(width: 40, height: 40)
 
             Button {
-
+                print("profiles")
             } label: {
                 HStack(spacing: .p4) {
-                    PixelText(configuration: .name, text: name)
+                    PixelText(configuration: .name, text: model.name)
                     Image(systemName: "chevron.down")
                         .resizable()
                         .scaledToFit()
@@ -40,6 +40,15 @@ public struct TopBarView: View {
             .buttonStyle(DecreaseSizeButtonStyle())
 
             Spacer()
+
+            HStack(spacing: .p10) {
+                ForEach(model.toolbar, id: \.self) { item in
+                    Image(systemName: item.rawValue)
+                        .resizable()
+                        .scaledToFill()
+                        .frame(width: 20, height: 20)
+                }
+            }
         }
         .padding(.horizontal, .p10)
     }
@@ -59,5 +68,5 @@ fileprivate extension PixelTextConfiguration {
 }
 
 #Preview {
-    TopBarView(name: "Mohamad")
+    TopBarView(model: .init(name: "Mohamad", toolbar: [.cast, .settings]))
 }

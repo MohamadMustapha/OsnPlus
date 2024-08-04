@@ -22,7 +22,8 @@ final class HomeViewModel {
     enum UIState {
 
         struct HomeModel {
-            let headerItem: HeaderModel
+            let topBar: TopBarModel
+            let header: HeaderModel
             let sections: [ItemsCarouselModel]
         }
         case loading, loaded(model: HomeModel), error
@@ -66,6 +67,7 @@ final class HomeViewModel {
     }
 
     private func loadData(for category: Category) async throws -> UIState.HomeModel {
+        let topBar: TopBarModel = .init(name: "Mohamad", toolbar: [.cast])
         let sections: [ItemsCarouselModel]
         let header: HeaderModel
 
@@ -86,7 +88,7 @@ final class HomeViewModel {
             seriesSections = sections
             seriesHeader = header
         }
-        return UIState.HomeModel(headerItem: header, sections: sections)
+        return UIState.HomeModel(topBar: topBar, header: header, sections: sections)
     }
 
 
