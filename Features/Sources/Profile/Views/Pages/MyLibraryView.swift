@@ -6,6 +6,7 @@
 //
 
 import OSNCore
+import Pixel
 import SwiftUI
 
 public struct MyLibraryView: View {
@@ -33,13 +34,34 @@ public struct MyLibraryView: View {
 
     @ViewBuilder
     func loadedView(model: Model) -> some View {
-        VStack {
+        VStack(spacing: .p10) {
+            TopBarView(model: .init(name: "Mohamad", toolbar: [.cast, .settings]))
             ScrollView {
-
+                VStack(spacing: .p10) {
+                    MyDownloadsView()
+                    VStack(alignment: .leading, spacing: .p5) {
+                        PixelText(configuration: .list, text: "My List")
+                            .padding(.horizontal, .p10)
+                        if model.watchlist.isEmpty {
+                            // TODO: fix alignement
+                            EmptyListView()
+                        } else {
+                            ItemsGridView(items: model.watchlist)
+                        }
+                    }
+                }
             }
             .scrollBounceBehavior(.basedOnSize)
         }
+    }
+}
 
+fileprivate extension PixelTextConfiguration {
+
+    static var list: PixelTextConfiguration {
+        .init(alignment: .center,
+              colorStyle: .single(color: PixelColor.light1),
+              fontStyle: .single(font: PixelFont.big1))
     }
 }
 

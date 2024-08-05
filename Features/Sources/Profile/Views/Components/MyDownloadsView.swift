@@ -38,7 +38,7 @@ struct MyDownloadsView: View {
                         .frame(width: 15, height: 15)
                         .foregroundStyle(PixelColor.light1)
                 }
-                .padding(.p10)
+                .padding(.p8)
                 .background(
                     RoundedRectangle(cornerRadius: .medium)
                         .fill(PixelColor.dark3)
@@ -46,6 +46,7 @@ struct MyDownloadsView: View {
             }
             .buttonStyle(DecreaseSizeButtonStyle())
         }
+        .padding(.horizontal, .p10)
     }
 }
 

@@ -58,7 +58,7 @@ fileprivate extension PixelTextConfiguration {
     static var explore: PixelTextConfiguration {
         .init(alignment: .center,
               colorStyle: .single(color: PixelColor.dark8),
-              fontStyle: .single(font: PixelFont.big3))
+              fontStyle: .single(font: PixelFont.big2))
     }
 }
 
