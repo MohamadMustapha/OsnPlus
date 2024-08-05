@@ -8,6 +8,7 @@ let package: Package = .init(
     platforms: [.iOS],
     products: [
         // Products define the executables and libraries a package produces, making them visible to other packages.
+        .detailsProduct,
         .homeProduct,
         .profileProduct,
         .searchProduct
@@ -24,7 +25,9 @@ let package: Package = .init(
     ],
     targets: [
         // Targets are the basic building blocks of a package, defining a module or a test suite.
-        // Targets can depend on other targets in this package and products from dependencies.
+        // Targets can depend on other targets in this package and products from dependencies
+        .detailsTarget,
+
         .homeTarget,
         .homeTestTarget,
 
@@ -38,6 +41,8 @@ let package: Package = .init(
 
 fileprivate extension Product {
 
+    static let detailsProduct: Product = .library(name: .details,
+                                                  targets: [.details])
     static let homeProduct: Product = .library(name: .home,
                                                targets: [.home])
     static let profileProduct: Product = .library(name: .profile,
@@ -65,6 +70,7 @@ fileprivate extension String {
     static let module: String = "Features"
 
     // MARK: Submodules
+    static let details: String = "Details"
     static let home: String = "Home"
     static let profile: String = "Profile"
     static let search: String = "Search"
@@ -91,6 +97,12 @@ fileprivate extension SupportedPlatform {
 }
 
 fileprivate extension Target {
+
+    static let detailsTarget: Target = target(name: .details,
+                                           dependencies: [.coreDependency,
+                                                          .networkDependency,
+                                                          .kingFisherDependency,
+                                                          .pixelDependency])
 
     static let homeTarget: Target = target(name: .home,
                                            dependencies: [.coreDependency,
@@ -123,6 +135,7 @@ fileprivate extension Target {
 fileprivate extension Target.Dependency {
 
     // MARK: Submodules
+    static let detailsDependency: Target.Dependency = byName(name: .details)
     static let homeDependency: Target.Dependency = byName(name: .home)
     static let profileDependency: Target.Dependency = byName(name: .profile)
     static let searchDependency: Target.Dependency = byName(name: .search)

@@ -51,7 +51,7 @@ public struct HomeView: View {
             let size = $0.size
             ScrollView(.vertical, showsIndicators: false) {
                 LazyVStack(spacing: .p15) {
-                    HeaderView(size: size, safeArea: safeArea, item: model.headerItem)
+                    HeaderView(size: size, safeArea: safeArea, item: model.header)
 
                     ForEach(model.sections, id: \.id) { section in
                         ItemsCarouselView(carousel: section)
@@ -64,7 +64,7 @@ public struct HomeView: View {
             .scrollBounceBehavior(.basedOnSize)
 
             VStack(spacing: .p2) {
-                TopBarView(name: "Mohamad")
+                TopBarView(model: model.topBar)
                 GenresPillView(isPresented: $isPresented, category: $viewModel.category)
             }
         }
