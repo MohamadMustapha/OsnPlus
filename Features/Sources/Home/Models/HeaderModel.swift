@@ -12,5 +12,5 @@ public struct HeaderModel: Identifiable {
     public let id: Int
 
     public let imageUrl: String
-    public let genres: [String]
+    public let genres: String
 }

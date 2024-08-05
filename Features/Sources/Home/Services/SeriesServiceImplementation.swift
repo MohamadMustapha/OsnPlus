@@ -77,6 +77,6 @@ struct SeriesServiceImplementation: SeriesService {
     private func parseHeader(from response: HeaderResponse) throws -> HeaderModel {
         return try .init(id: response.id,
                          imageUrl: api.generateImageUrl(from: response.posterPath),
-                         genres: response.genres.map {$0.name})
+                         genres: response.genres.map {$0.name}.prefix(3).joined(separator: " · "))
     }
 }
