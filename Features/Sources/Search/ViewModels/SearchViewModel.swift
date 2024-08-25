@@ -5,7 +5,6 @@
 //  Created by Mohamad Mustapha on 05/06/2024.
 //
 
-import Combine
 import Observation
 import OSNCore
 import OSNNetwork
@@ -14,19 +13,22 @@ import SwiftUI
 @Observable
 final class SearchViewModel {
 
+    enum SearchState {
+
+        case searchItems([ItemModel])
+        case trendingItems([ItemModel])
+        case noResults
+    }
+
     enum UIState {
 
-        struct SearchModel {
-            let trendingItems: [ItemModel]
-            let searchItems: [ItemModel]
-        }
-
-        case loading, loaded(model: SearchModel), error
+        case loading, loaded(model: SearchState), error
     }
 
     private var service: SearchService = SearchServiceImplementation(moviesApi: HttpMoviesApi(), seriesApi: HttpSeriesApi())
     private(set) var state: UIState = .loading
-    private(set) var trendingItems: [ItemModel]?
+    private(set) var trendingItems: [ItemModel] = []
+    private(set) var searchItems: [ItemModel] = []
     private var currentTask: Task<Void, Never>? = nil
 
     var searchText: String = ""
@@ -34,23 +36,18 @@ final class SearchViewModel {
     init() {}
 
     func refresh() async {
-        !searchText.isEmpty ? search(for: searchText) : await getTrending()
+        await getTrending()
     }
 
     func getTrending() async {
         do {
-            var model: UIState.SearchModel
-
-            if let items = trendingItems {
-                model = .init(trendingItems: items, searchItems: [])
-            } else {
+            if trendingItems.isEmpty {
                 let items = try await service.getAllTrending()
                 trendingItems = items
-                model = .init(trendingItems: items , searchItems: [])
             }
 
             withAnimation {
-                state = .loaded(model: model)
+                computeState()
             }
         } catch {
             print(error)
@@ -61,30 +58,52 @@ final class SearchViewModel {
     }
 
     func search(for searchText: String) {
-        currentTask?.cancel()
-        currentTask = Task {
-            do {
-                log("Started search for \(searchText)")
-                let searchItems: [ItemModel] = try await service.getSearch(query: searchText)
-                log("Ended search for \(searchText)")
-                let model: UIState.SearchModel = .init(trendingItems: trendingItems ?? [], searchItems: searchItems)
 
-                withAnimation {
-                    state = .loaded(model: model)
-                }
-            } catch {
-                if let _ = error as? CancellationError {
-                    log("Searching for \(searchText) cancelled")
-                } else if let urlError = error as? URLError, urlError.code == .cancelled {
-                    log("Searching for \(searchText) cancelled by URLError")
-                } else {
-                    log("Error searching for \(searchText): \(error.localizedDescription)")
+        currentTask?.cancel()
+        if searchText.count == 0 {
+            searchItems = []
+
+            withAnimation {
+                computeState()
+            }
+        } else {
+            currentTask = Task {
+                do {
+                    log("Started search for \(searchText)")
+                    let items: [ItemModel] = try await service.getSearch(query: searchText)
+                    log("Ended search for \(searchText)")
+                    searchItems = items
+
                     withAnimation {
-                        state = .error
+                        computeState()
+                    }
+                } catch {
+                    if let _ = error as? CancellationError {
+                        log("Searching for \(searchText) cancelled")
+                    } else if let urlError = error as? URLError, urlError.code == .cancelled {
+                        log("Searching for \(searchText) cancelled by URLError")
+                    } else {
+                        log("Error searching for \(searchText): \(error.localizedDescription)")
+
+                        withAnimation {
+                            state = .error
+                        }
                     }
                 }
             }
         }
+    }
+
+    func computeState() {
+        if searching && searchItems.isEmpty {
+            state = .loaded(model: .noResults)
+        } else {
+            state = .loaded(model: searchItems.isEmpty ? .trendingItems(trendingItems) : .searchItems(searchItems))
+        }
+    }
+
+    private var searching: Bool {
+        return searchText.count > 0
     }
 
     private func log(_ message: String) {
