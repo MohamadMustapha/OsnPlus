@@ -18,6 +18,7 @@ final class SearchViewModel {
         case searchItems([ItemModel])
         case trendingItems([ItemModel])
         case noResults
+        case popularTitles(SearchPopularTitlesModel)
     }
 
     enum UIState {
@@ -29,10 +30,22 @@ final class SearchViewModel {
     private(set) var state: UIState = .loading
     private(set) var trendingItems: [ItemModel] = []
     private(set) var searchItems: [ItemModel] = []
+    private(set) var popularTitles: SearchPopularTitlesModel = .init(titles: ["Game Of Thrones",
+                                                                              "House Of The Dragon",
+                                                                              "From",
+                                                                              "Ikhwati"])
     private var currentTask: Task<Void, Never>? = nil
 
     var searchText: String = ""
     
+    var searchBarFocused: Bool = false {
+        didSet {
+            withAnimation {
+                computeState()
+            }
+        }
+    }
+
     init() {}
 
     func refresh() async {
@@ -95,10 +108,14 @@ final class SearchViewModel {
     }
 
     func computeState() {
-        if searching && searchItems.isEmpty {
+        if !searching && searchBarFocused {
+            state = .loaded(model: .popularTitles(popularTitles))
+        } else if !searching && !searchBarFocused {
+            state = .loaded(model: .trendingItems(trendingItems))
+        } else if searching && searchItems.isEmpty {
             state = .loaded(model: .noResults)
         } else {
-            state = .loaded(model: searchItems.isEmpty ? .trendingItems(trendingItems) : .searchItems(searchItems))
+            state = .loaded(model: .searchItems(searchItems))
         }
     }
 
