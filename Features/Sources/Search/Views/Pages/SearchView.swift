@@ -15,14 +15,21 @@ public struct SearchView: View {
 
     @Bindable private var viewModel: SearchViewModel = .init()
 
+    @FocusState private var isFocused: Bool
+
     public init() {}
 
     public var body: some View {
         VStack(spacing: .p5) {
             SearchBarView(searchText: $viewModel.searchText)
+                .focused($isFocused)
+                .onChange(of: isFocused) { focus in
+                    viewModel.searchBarFocused = focus
+                }
                 .onChange(of: viewModel.searchText) {
                     viewModel.search(for: viewModel.searchText)
                 }
+
             Group {
                 switch viewModel.state {
                 case .loading:
@@ -60,6 +67,9 @@ public struct SearchView: View {
 
                 case .noResults:
                     PixelText(configuration: .unavailable, text: "No results found.")
+
+                case .popularTitles(let populars):
+                    SearchPopularTitlesView(searchText: $viewModel.searchText, item: populars)
                 }
             }
             .padding(.p10)
