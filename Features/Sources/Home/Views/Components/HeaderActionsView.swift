@@ -15,7 +15,7 @@ struct HeaderActionsView: View {
 
     var body: some View {
         VStack(spacing: .p7) {
-            PixelText(configuration: .genres, text: (item.genres.prefix(3).joined(separator: " · ")))
+            PixelText(configuration: .genres, text: (item.genres))
 
             HStack(alignment: .center, spacing: .p2) {
                 Button {
@@ -99,5 +99,5 @@ fileprivate extension PixelTextConfiguration {
 #Preview {
     HeaderActionsView(item: .init(id: 1,
                                   imageUrl: "",
-                                  genres: ["Drama", "Crime"]))
+                                  genres: "Drama · Crime"))
 }

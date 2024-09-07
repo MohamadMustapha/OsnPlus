@@ -11,7 +11,7 @@ import SwiftUI
 
 public struct SearchView: View {
 
-    typealias Model = SearchViewModel.UIState.SearchModel
+    typealias Model = SearchViewModel.SearchState
 
     @Bindable private var viewModel: SearchViewModel = .init()
 
@@ -21,7 +21,7 @@ public struct SearchView: View {
         VStack(spacing: .p5) {
             SearchBarView(searchText: $viewModel.searchText)
                 .onChange(of: viewModel.searchText) {
-                    if searching {viewModel.search(for: viewModel.searchText)}
+                    viewModel.search(for: viewModel.searchText)
                 }
             Group {
                 switch viewModel.state {
@@ -49,22 +49,23 @@ public struct SearchView: View {
     func loadedView(model: Model) -> some View {
         ScrollView {
             VStack(alignment: .leading, spacing: .p5) {
-                    // TODO: animation bug
-                if searching && model.searchItems.isEmpty {
+                switch model {
+                case .searchItems(let searches):
+                    PixelText(configuration: .title, text: "Search results")
+                    ItemsGridView(items: searches)
+
+                case .trendingItems(let trendings):
+                    PixelText(configuration: .title, text: "Trending Movies & Series")
+                    ItemsGridView(items: trendings)
+
+                case .noResults:
                     PixelText(configuration: .unavailable, text: "No results found.")
-                } else {
-                    PixelText(configuration: .title, text: searching ? "Search results" : "Trending Movies & Series")
-                    ItemsGridView(items: searching ? model.searchItems : model.trendingItems)
                 }
             }
             .padding(.p10)
         }
         .scrollBounceBehavior(.basedOnSize)
         .scrollIndicators(.automatic)
-    }
-
-    private var searching: Bool {
-        return viewModel.searchText.count > 0
     }
 }
 
