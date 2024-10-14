@@ -12,7 +12,6 @@
 		D127497D2C0B60DD0021EAD7 /* Profile in Frameworks */ = {isa = PBXBuildFile; productRef = D127497C2C0B60DD0021EAD7 /* Profile */; };
 		D127497F2C0B60DD0021EAD7 /* Search in Frameworks */ = {isa = PBXBuildFile; productRef = D127497E2C0B60DD0021EAD7 /* Search */; };
 		D12749812C0B60DD0021EAD7 /* OSNNetwork in Frameworks */ = {isa = PBXBuildFile; productRef = D12749802C0B60DD0021EAD7 /* OSNNetwork */; };
-		D12749852C0B60F40021EAD7 /* Pixel in Frameworks */ = {isa = PBXBuildFile; productRef = D12749842C0B60F40021EAD7 /* Pixel */; };
 		D1EA0C122BF1536E005A5B07 /* OsnPlusApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = D1EA0C112BF1536E005A5B07 /* OsnPlusApp.swift */; };
 		D1EA0C142BF1536E005A5B07 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D1EA0C132BF1536E005A5B07 /* ContentView.swift */; };
 		D1EA0C162BF15370005A5B07 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = D1EA0C152BF15370005A5B07 /* Assets.xcassets */; };
@@ -20,6 +19,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		BE37F26E2CBD350B005A96F6 /* Pixel */ = {isa = PBXFileReference; lastKnownFileType = wrapper; path = Pixel; sourceTree = "<group>"; };
 		D12749752C0B5FC60021EAD7 /* Network */ = {isa = PBXFileReference; lastKnownFileType = wrapper; path = Network; sourceTree = "<group>"; };
 		D12749762C0B5FE30021EAD7 /* Core */ = {isa = PBXFileReference; lastKnownFileType = wrapper; path = Core; sourceTree = "<group>"; };
 		D12749772C0B60220021EAD7 /* Features */ = {isa = PBXFileReference; lastKnownFileType = wrapper; path = Features; sourceTree = "<group>"; };
@@ -38,7 +38,6 @@
 				D12749812C0B60DD0021EAD7 /* OSNNetwork in Frameworks */,
 				D127497F2C0B60DD0021EAD7 /* Search in Frameworks */,
 				D127497D2C0B60DD0021EAD7 /* Profile in Frameworks */,
-				D12749852C0B60F40021EAD7 /* Pixel in Frameworks */,
 				D12749792C0B60DD0021EAD7 /* OSNCore in Frameworks */,
 				D127497B2C0B60DD0021EAD7 /* Home in Frameworks */,
 			);
@@ -60,6 +59,7 @@
 				D12749762C0B5FE30021EAD7 /* Core */,
 				D12749772C0B60220021EAD7 /* Features */,
 				D12749752C0B5FC60021EAD7 /* Network */,
+				BE37F26E2CBD350B005A96F6 /* Pixel */,
 				D1EA0C102BF1536E005A5B07 /* OsnPlus */,
 				D1EA0C0F2BF1536E005A5B07 /* Products */,
 				D17781DA2BF552AA0040B8D9 /* Frameworks */,
@@ -115,7 +115,6 @@
 				D127497C2C0B60DD0021EAD7 /* Profile */,
 				D127497E2C0B60DD0021EAD7 /* Search */,
 				D12749802C0B60DD0021EAD7 /* OSNNetwork */,
-				D12749842C0B60F40021EAD7 /* Pixel */,
 			);
 			productName = OsnPlus;
 			productReference = D1EA0C0E2BF1536E005A5B07 /* OsnPlus.app */;
@@ -146,7 +145,6 @@
 			);
 			mainGroup = D1EA0C052BF1536E005A5B07;
 			packageReferences = (
-				D13EF58E2BF6899900075256 /* XCRemoteSwiftPackageReference "Pixel-AppleOS" */,
 			);
 			productRefGroup = D1EA0C0F2BF1536E005A5B07 /* Products */;
 			projectDirPath = "";
@@ -309,7 +307,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_ASSET_PATHS = "\"OsnPlus/Preview Content\"";
-				DEVELOPMENT_TEAM = VV2UJ2245R;
+				DEVELOPMENT_TEAM = HQ5CB3L666;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_KEY_CFBundleDisplayName = "Osn+";
@@ -340,7 +338,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_ASSET_PATHS = "\"OsnPlus/Preview Content\"";
-				DEVELOPMENT_TEAM = VV2UJ2245R;
+				DEVELOPMENT_TEAM = HQ5CB3L666;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_KEY_CFBundleDisplayName = "Osn+";
@@ -386,17 +384,6 @@
 		};
 /* End XCConfigurationList section */
 
-/* Begin XCRemoteSwiftPackageReference section */
-		D13EF58E2BF6899900075256 /* XCRemoteSwiftPackageReference "Pixel-AppleOS" */ = {
-			isa = XCRemoteSwiftPackageReference;
-			repositoryURL = "https://github.com/SweepLebanon/Pixel-AppleOS.git";
-			requirement = {
-				kind = upToNextMajorVersion;
-				minimumVersion = 1.0.9;
-			};
-		};
-/* End XCRemoteSwiftPackageReference section */
-
 /* Begin XCSwiftPackageProductDependency section */
 		D12749782C0B60DD0021EAD7 /* OSNCore */ = {
 			isa = XCSwiftPackageProductDependency;
@@ -417,11 +404,6 @@
 		D12749802C0B60DD0021EAD7 /* OSNNetwork */ = {
 			isa = XCSwiftPackageProductDependency;
 			productName = OSNNetwork;
-		};
-		D12749842C0B60F40021EAD7 /* Pixel */ = {
-			isa = XCSwiftPackageProductDependency;
-			package = D13EF58E2BF6899900075256 /* XCRemoteSwiftPackageReference "Pixel-AppleOS" */;
-			productName = Pixel;
 		};
 /* End XCSwiftPackageProductDependency section */
 	};
