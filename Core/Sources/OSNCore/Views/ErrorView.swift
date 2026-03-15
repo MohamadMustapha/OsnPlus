@@ -34,6 +34,8 @@ public struct ErrorView: View {
             .buttonStyle(DecreaseSizeButtonStyle())
         }
         .padding(.horizontal, .p20)
+        
+        
     }
 }
 
