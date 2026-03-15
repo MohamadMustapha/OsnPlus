@@ -46,8 +46,6 @@ final class HomeViewModel {
 
     }
 
-    init() { }
-
     func onAppear() async {
         do {
             let model: UIState.HomeModel = try await loadData(for: category)
@@ -55,7 +53,7 @@ final class HomeViewModel {
                 state = .loaded(model: model)
             }
         } catch {
-            print(ViewModelError.failedToLoad)
+            print(error)
             withAnimation {
                 state = .error
             }
@@ -129,7 +127,7 @@ final class HomeViewModel {
             while let result = try await taskGroup.next() {
                 sections.append(result)
             }
-            return sections
+            return tasks.compactMap { task in sections.first(where: { $0.type == task.type }) }
         }
     }
 
