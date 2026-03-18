@@ -127,7 +127,7 @@ final class HomeViewModel {
             while let result = try await taskGroup.next() {
                 sections.append(result)
             }
-            return tasks.compactMap { task in sections.first(where: { $0.type == task.type }) }
+            return sections
         }
     }
 
